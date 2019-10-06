@@ -1,0 +1,34 @@
+#leftmost {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    background-color:#EB6851;
+}
+#left {
+    position: absolute;
+    height: 100%;
+    background-color:#0C4C7C;
+    z-index: 0;
+    left: 20px;
+}
+#title {
+    color: #E2D8BD;
+}
+input, .form-control {
+    background-color: #E2D8BD;
+    text-color: #E2D8BD;
+}
+#login_box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-30%, 140%);
+    text-align: center;
+    color: #0C4C7C;
+}
+#login_holder {
+    position: relative;
+}
+#content {
+    height: 100%;
+}
