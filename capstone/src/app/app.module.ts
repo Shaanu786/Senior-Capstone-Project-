@@ -6,11 +6,19 @@ import { AppComponent } from './app.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { TaskComponent } from './task/task.component';
+import { ProjectTabComponent } from './project-tab/project-tab.component';
+import { TaskColumnComponent } from './task-column/task-column.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomepageComponent,
+    TaskComponent,
+    ProjectTabComponent,
+    TaskColumnComponent
   ],
   imports: [
     BrowserModule,
