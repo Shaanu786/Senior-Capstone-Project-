@@ -3,6 +3,11 @@
     text-align: center;
     color: #0C4C7C;
 }
+
+#row :first-child{
+    border-left-style: solid;
+}
+
 #the-line {
     background-color: #EB6851;
     height: 11px;

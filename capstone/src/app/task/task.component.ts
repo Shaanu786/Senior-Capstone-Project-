@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TaskComponent implements OnInit {
   @Input() title: string;
+  @Input() project: string;
+  @Input() course: string;
   constructor() { }
 
   ngOnInit() {
