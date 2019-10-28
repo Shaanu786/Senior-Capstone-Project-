@@ -16,6 +16,10 @@ export class ProjectPageComponent implements OnInit {
 
   ngOnInit() {
     // this.title = history.state.data
+    this.route.paramMap.subscribe(params =>
+      {
+        this.title = params.get('id')
+      })
   }
 
 }

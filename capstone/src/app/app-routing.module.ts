@@ -9,7 +9,11 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'home', component: HomepageComponent},
-  {path: 'project', component: ProjectPageComponent},
+  {path: 'project',
+    children: [
+      {path: '', component: ProjectPageComponent},
+      {path: ':id', component: ProjectPageComponent}
+    ]},
   {path: 'profile', component: ProfilePageComponent}
 ];
 
