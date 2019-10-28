@@ -1,0 +1,50 @@
+@import '../project-page/project-page.component.css';
+#pic-placeholder {
+    height: 20vh;
+    border-width: 14px;
+    border-radius: 9px;
+}
+
+#left {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal {
+    display: flex;
+}
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+#badges {
+    height: 50vh;
+    background-color: #0C4C7C;
+    justify-content: flex-start;
+}
+#space{
+    height: 5vh;
+
+}
+.title, .badge-custom {
+    color: white;
+}
+
+#badges, #pic-placeholder {
+    border-style: solid;
+    width: 20vh;
+    border-color: #0C4C7C;
+}
+
+#graphs {
+    border-style: solid;
+    border-radius: 10px;
+    justify-content: center;
+}
+#contact, #graphs {
+    margin-left: 10px;
+}
+#content {
+    justify-content: center;
+}

@@ -10,6 +10,10 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { TaskComponent } from './task/task.component';
 import { ProjectTabComponent } from './project-tab/project-tab.component';
 import { TaskColumnComponent } from './task-column/task-column.component';
+import { TaskFloatComponent } from './task-float/task-float.component';
+import { ProjectPageComponent } from './project-page/project-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { TaskColumnComponent } from './task-column/task-column.component';
     HomepageComponent,
     TaskComponent,
     ProjectTabComponent,
-    TaskColumnComponent
+    TaskColumnComponent,
+    TaskFloatComponent,
+    ProjectPageComponent,
+    ProfilePageComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,10 @@
 #row {
     align-content: center;
     text-align: center;
+    justify-content: center;
     color: #0C4C7C;
 }
-a {
-    float: left;
-}
+
 #row :first-child{
     border-left-style: solid;
 }
@@ -19,7 +18,17 @@ a {
 #title {
     margin-bottom: 0;
 }
-#project-tabs {
-    justify-content: center;
+.tabs {
     margin-bottom: 10px;
+    display:flex;
+    justify-content: center;
+}
+#team {
+    margin-top: 10px;
+}
+#kanban {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
