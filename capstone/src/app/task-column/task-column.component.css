@@ -1,0 +1,9 @@
+#column {
+    height: 70vh;
+    width: 15vw;
+    border-style: solid;
+    border-color: #0C4C7C;
+    border-left-style: none;
+    padding-right: 10px;
+    padding-left: 10px;
+}

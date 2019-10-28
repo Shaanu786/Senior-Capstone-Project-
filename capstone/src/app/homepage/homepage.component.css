@@ -1,0 +1,25 @@
+#row {
+    align-content: center;
+    text-align: center;
+    color: #0C4C7C;
+}
+a {
+    float: left;
+}
+#row :first-child{
+    border-left-style: solid;
+}
+
+#the-line {
+    background-color: #EB6851;
+    height: 11px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+#title {
+    margin-bottom: 0;
+}
+#project-tabs {
+    justify-content: center;
+    margin-bottom: 10px;
+}

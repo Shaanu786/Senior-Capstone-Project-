@@ -1,0 +1,16 @@
+#task-card {
+    /* padding: 2px; */
+    background-color: #0C4C7C;
+    color: white;
+    text-align: left;
+    padding: .5rem;
+}
+#task-card p {
+    margin-bottom: 0;
+    text-transform: capitalize;
+    font-size: 10px;
+}
+
+#task-card :first-child {
+    font-size: 20px;
+}

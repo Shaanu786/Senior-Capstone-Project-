@@ -1,0 +1,13 @@
+<app-nav></app-nav>
+<div  class="container col-md-10">
+    <h2 id="title"[routerLink] = "['/']" >{{title}}</h2>
+</div>
+<div id="the-line" class = "col-md-10 container"></div>
+<div id="project-tabs" class="container-fluid row">
+    <app-project-tab class= "contatiner" *ngFor='let project of projects' [title] = project></app-project-tab>
+</div>
+<div id="holder" class="col-md-10 container">
+    <div id="row" class="row col-md-12">
+        <app-task-column *ngFor="let column of columns" [header]=column></app-task-column>
+    </div>
+</div>
