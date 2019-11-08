@@ -14,6 +14,11 @@ import { TaskFloatComponent } from './task-float/task-float.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavComponent } from './nav/nav.component';
+import { MatTableModule} from '@angular/material';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FrameComponent } from './frame/frame.component';
+import { KanbanComponent } from './kanban/kanban.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +31,17 @@ import { NavComponent } from './nav/nav.component';
     TaskFloatComponent,
     ProjectPageComponent,
     ProfilePageComponent,
-    NavComponent
+    NavComponent,
+    FrameComponent,
+    KanbanComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

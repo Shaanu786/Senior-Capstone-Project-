@@ -1,6 +1,27 @@
+@import'../project-tab/project-tab.component.css';
 
-div {
-    display: flex;
-    flex-direction: column;
-    float: left;
+#wrapper {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas: 
+        "home"
+        "profile"
+        "logout";
 }
+p {
+    margin: 0;
+}
+#home {
+    grid-area: home;
+}
+#profile {
+    grid-area: profile;
+}
+#logout {
+    grid-area: logout;
+}
+/* p {
+    text-align: right;
+} */

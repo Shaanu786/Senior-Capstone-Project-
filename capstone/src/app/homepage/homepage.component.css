@@ -1,25 +1,41 @@
-#row {
-    align-content: center;
-    text-align: center;
-    color: #0C4C7C;
-}
-a {
-    float: left;
-}
-#row :first-child{
-    border-left-style: solid;
+.content {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 10vw 1fr 50px;
+    grid-template-rows: 1fr 5fr;
+    /* grid-row-gap: 20px; */
+    grid-template-areas: 
+        "nav header header"
+        "nav main empty";
 }
 
-#the-line {
-    background-color: #EB6851;
-    height: 11px;
-    margin-top: 0;
-    margin-bottom: 20px;
+table {
+    grid-area: main;
 }
-#title {
-    margin-bottom: 0;
-}
-#project-tabs {
+nav {
+    grid-area: nav;
+    background-color: #0c4c7c;
+    height: 100vh;
+    min-width: min-content;
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
     justify-content: center;
-    margin-bottom: 10px;
+    bottom: auto;
+}
+
+header {
+    grid-area: header;
+    display: grid;
+    background-color: #0c4c7c;
+    color: white;
+    font-size: 100px;
+    align-content: end;
+}
+header p {
+    margin: 0;
+}
+.empty {
+    grid-area: empty;
 }
