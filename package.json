@@ -1,0 +1,28 @@
+{
+  "name": "Senior-Capstone-Project-",
+  "version": "1.0.0",
+  "description": "CSC-394 Software Projects",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shaanu786/Senior-Capstone-Project-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shaanu786/Senior-Capstone-Project-/issues"
+  },
+  "homepage": "https://github.com/Shaanu786/Senior-Capstone-Project-#readme",
+  "dependencies": {
+    "@pusher/chatkit-server": "^2.1.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}

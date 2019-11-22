@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ChatboxComponent } from './chatbox/chatbox.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
       {path: '', component: ProjectPageComponent},
       {path: ':id', component: ProjectPageComponent}
     ]},
+  {path: 'chatroom', component: ChatboxComponent},
   {path: 'profile', component: ProfilePageComponent}
 ];
 

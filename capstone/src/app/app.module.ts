@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FrameComponent } from './frame/frame.component';
 import { KanbanComponent } from './kanban/kanban.component';
+import { ChatboxComponent } from './chatbox/chatbox.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { KanbanComponent } from './kanban/kanban.component';
     ProfilePageComponent,
     NavComponent,
     FrameComponent,
-    KanbanComponent
+    KanbanComponent,
+    ChatboxComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { KanbanComponent } from './kanban/kanban.component';
     NgbModule,
     BrowserAnimationsModule,
     MatTableModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
