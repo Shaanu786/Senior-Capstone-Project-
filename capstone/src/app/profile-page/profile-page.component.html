@@ -25,7 +25,16 @@
                 <p *ngFor="let badge of badges" class="badge-custom">{{badge}}</p>
             </section>
             <section id="graphs" class="vertical">
-                <h1>THIS IS WHERE ANALYTICS WILL GO</h1>
+                <h1>
+                    <!-- in app.component.html -->
+                    <fusioncharts
+                        [type]="type"
+                        [width]="width"
+                        [height]="height"
+                        [dataSource]="dataSource"
+                    >
+                    </fusioncharts>
+                </h1>
             </section>
         </div>
     </div>

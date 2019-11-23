@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as FusionCharts from 'fusioncharts';
 
 @Component({
   selector: 'app-profile-page',
@@ -10,9 +11,64 @@ export class ProfilePageComponent implements OnInit {
   title = "Profile"
   projects = ["Project 1","Project 2","Project 3","Project 4","Project 5"]
   badges = ["Team Player", "Frontend Specialist", "Crunch Time Hero"]
-  constructor() { }
+  
+  dataSource: any;
+  type: string;
+  width: string;
+  height: string;
+  constructor() {
+    this.type = 'timeseries';
+    this.width = '50%';
+    this.height = '400';
+    // This is the dataSource of the chart
+    this.dataSource = {
+      // Initially data is set as null
+      data: null,
+      caption: {
+        text: 'Sales Analysis'
+      },
+      subcaption: {
+        text: 'Grocery & Footwear'
+      },
+      series: 'Type',
+      yAxis: [
+        {
+          plot: 'Sales Value',
+          title: 'Sale Value',
+          format: {
+            prefix: '$'
+          }
+        }
+      ]
+    };
+    this.fetchData();
+  }
+  
+  // In this method we will create our DataStore and using that we will create a custom DataTable which takes two
+  // parameters, one is data another is schema.
+  fetchData() {
+    var jsonify = res => res.json();
+    var dataFetch = fetch(
+      './points-data.json'
+    ).then(jsonify);
+    var schemaFetch = fetch(
+      './points-schema.json'
+    ).then(jsonify);
 
-  ngOnInit() {
+    Promise.all([dataFetch, schemaFetch]).then(res => {
+      const data = res[0];
+      const schema = res[1];
+      // First we are creating a DataStore
+      const fusionDataStore = new FusionCharts.DataStore();
+      // After that we are creating a DataTable by passing our data and schema as arguments
+      const fusionTable = fusionDataStore.createDataTable(data, schema);
+      // After that we simply mutated our timeseries datasource by attaching the above
+      // DataTable into its data property.
+      this.dataSource.data = fusionTable;
+    });
   }
 
+  ngOnInit() {
+
+  }
 }

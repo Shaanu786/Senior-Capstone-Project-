@@ -1,0 +1,11 @@
+[{
+    "name": "Time",
+    "type": "date",
+    "format": "%d-%b-%y"
+  }, {
+    "name": "Type",
+    "type": "string"
+  }, {
+    "name": "Points",
+    "type": "number"
+  }]
