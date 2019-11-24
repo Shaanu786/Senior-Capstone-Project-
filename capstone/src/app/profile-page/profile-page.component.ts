@@ -32,23 +32,23 @@ export class ProfilePageComponent implements OnInit {
       // Initially data is set as null
       data: null,
       caption: {
-        text: 'Sales Analysis'
+        text: 'Points Made'
       },
       subcaption: {
-        text: 'Grocery & Footwear'
+        text: 'Project Team Members'
       },
       series: 'Type',
       yAxis: [
         {
-          plot: 'Sales Value',
-          title: 'Sale Value',
+          plot: 'Points',
+          title: 'Points',
           format: {
-            prefix: '$'
+            suffix: 'pts'
           }
         }
       ]
     };
-    // this.fetchData();
+    this.fetchData();
   }
 
   // In this method we will create our DataStore and using that we will create a custom DataTable which takes two
@@ -69,7 +69,7 @@ export class ProfilePageComponent implements OnInit {
       const fusionDataStore = new FusionCharts.DataStore();
       // After that we are creating a DataTable by passing our data and schema as arguments
       const fusionTable = fusionDataStore.createDataTable(data, schema);
-      // Afet that we simply mutated our timeseries datasource by attaching the above
+      // After that we simply mutated our timeseries datasource by attaching the above
       // DataTable into its data property.
       this.dataSource.data = fusionTable;
     });

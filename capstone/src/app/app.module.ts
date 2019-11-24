@@ -23,15 +23,13 @@ import { KanbanComponent } from './kanban/kanban.component';
 import { FusionChartsModule } from 'angular-fusioncharts';
 import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
-import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
-import * as TimeSeries from 'fusioncharts/fusioncharts.timeseries'
+import * as TimeSeries from 'fusioncharts/fusioncharts.timeseries';
 
 // Add dependencies to FusionChartsModule
 FusionChartsModule.fcRoot(
   FusionCharts, 
   Charts,
-  TimeSeries,
-  FusionTheme
+  TimeSeries
 )
 
 @NgModule({
