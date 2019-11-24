@@ -3,7 +3,7 @@
     <nav>
         <app-nav></app-nav>
         <div id="project-wrapper">
-            <app-project-tab class= "contatiner" *ngFor='let project of projects' [title] = project></app-project-tab>
+            <app-project-tab *ngFor='let project of projects' [title] = project></app-project-tab>
         </div>
     </nav>
     <header>
@@ -12,7 +12,7 @@
 
     <div class="empty"></div>
     <main id="kanban">
-        <app-kanban></app-kanban>
+        <app-kanban [project]="title"></app-kanban>
         <!-- <div id="row" class="row col-md-12">
             <app-task-column *ngFor="let column of columns" [header]=column></app-task-column>
         </div>

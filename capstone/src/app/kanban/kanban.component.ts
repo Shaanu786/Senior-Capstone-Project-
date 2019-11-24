@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { TaskService} from '../tasks-service/task-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-kanban',
@@ -8,10 +9,10 @@ import { TaskService} from '../tasks-service/task-service.service';
   styleUrls: ['./kanban.component.css']
 })
 export class KanbanComponent implements OnInit {
-    tasks = this.taskService.getAllTasks();
-    todo = this.taskService.getTodo();
-    progress = this.taskService.getProgress();
-    done = this.taskService.getFinished();
+    @Input() project: string;
+    todo;
+    progress;
+    done;
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -20,14 +21,20 @@ export class KanbanComponent implements OnInit {
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
-        //console.log(event.currentIndex);
-        //console.log(event.container.id);
-        this.taskService.changeTaskStatus(JSON.parse(event.container.data[event.currentIndex]), event.container.id.slice(-1));
+        //console.log(event.container.data[event.currentIndex]);
+        this.taskService.changeTaskStatus(event.container.data[event.currentIndex],
+                                            event.container.id);
     }
   }
-  constructor(private taskService:TaskService) { }
+  constructor(private taskService:TaskService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(() =>
+      {
+          this.todo = this.taskService.getTodoProject(this.project);
+          this.progress = this.taskService.getProgressProject(this.project);
+          this.done  = this.taskService.getFinishedProject(this.project);
+      });
   }
 
 }
