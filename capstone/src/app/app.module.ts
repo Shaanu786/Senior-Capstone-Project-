@@ -19,6 +19,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FrameComponent } from './frame/frame.component';
 import { KanbanComponent } from './kanban/kanban.component';
+import { TableComponent } from './table/table.component';
 
 import { FusionChartsModule } from 'angular-fusioncharts';
 import * as FusionCharts from 'fusioncharts';
@@ -45,7 +46,8 @@ FusionChartsModule.fcRoot(
     ProfilePageComponent,
     NavComponent,
     FrameComponent,
-    KanbanComponent
+    KanbanComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
