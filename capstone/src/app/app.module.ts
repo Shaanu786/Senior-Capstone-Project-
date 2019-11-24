@@ -20,20 +20,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FrameComponent } from './frame/frame.component';
 import { KanbanComponent } from './kanban/kanban.component';
 
-// Import angular-fusioncharts
 import { FusionChartsModule } from 'angular-fusioncharts';
-
-// Load FusionCharts
 import * as FusionCharts from 'fusioncharts';
-// Load Charts module
 import * as Charts from 'fusioncharts/fusioncharts.charts';
-// Load fusion theme
-import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
+import * as TimeSeries from 'fusioncharts/fusioncharts.timeseries'
 
 // Add dependencies to FusionChartsModule
 FusionChartsModule.fcRoot(
   FusionCharts, 
-  Charts, 
+  Charts,
+  TimeSeries,
   FusionTheme
 )
 
