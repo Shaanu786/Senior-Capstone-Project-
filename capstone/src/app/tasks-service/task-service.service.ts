@@ -6,15 +6,15 @@ import { Task, tasks } from '../tasksdb/tasks';
 })
 export class TaskService 
 {
-    statuses = ['todo','progress','finished']
+    appTasks: Task[] = tasks;
     getAllTasks() 
     {
         //console.log(tasks);
-        return tasks;
+        return this.appTasks;
     }
     getTaskStatus(status:string): Task[]
     {
-        return tasks.filter(task => task.status == status);
+        return this.appTasks.filter(task => task.status == status);
     }
     getNotFinished(): Task[] 
     {
@@ -32,21 +32,44 @@ export class TaskService
     {
         return this.getTaskStatus('progress');
     }
-    changeTaskStatus(taskItem:Task, newStatus:string) 
+    getTaskStatusProject(status:string, project:string): Task[]
     {
-        console.log(taskItem);
-        tasks.forEach(task => 
+        return this.appTasks.filter(task => 
+                                    {
+                                        console.log(`testing task. status: ${task.status} project: ${task.project}`);
+                                        console.log(`project to test against: ${project}`)
+                                        if (task.status != status) return false;
+                                        if (task.project != project) return false;
+                                        return true;
+                                    });
+    }
+    getTodoProject(project:string): Task[] 
+    {
+        return this.getTaskStatusProject('todo', project);
+    }
+    getFinishedProject(project:string): Task[] 
+    {
+        return this.getTaskStatusProject('finished', project);
+    }
+    getProgressProject(project:string): Task[] 
+    {
+        return this.getTaskStatusProject('progress', project);
+    }
+    changeTaskStatus(taskItem:string, newStatus:string) 
+    {
+        this.appTasks.forEach(task => 
        {
            if (task == taskItem)
             {
-              task.taskid = this.statuses[newStatus]; 
+                console.log(`updating task ${taskItem.title} to status ${newStatus}`);
+              task.status = newStatus;
             } 
         });
     }
     getUserTasks(userId:string): Task[] 
     {
-        return tasks.filter(task => task.user == userId);
+        return this.appTasks.filter(task => task.user == userId);
     }
 
-  constructor() { }
+    constructor() { }
 }

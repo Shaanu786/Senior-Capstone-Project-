@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-//import { Task, tasks } from '../kanban/tasks';
 import { TaskService} from '../tasks-service/task-service.service';
 
 /**
