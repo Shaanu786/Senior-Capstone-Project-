@@ -10,7 +10,7 @@ const schemaUrl =
 
 @Component({
   selector: 'app-profile-page',
-  templateUrl: './profile-page.component.html',
+  templateUrl: './profile-page.componentv2.html',
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit {
@@ -56,9 +56,11 @@ export class ProfilePageComponent implements OnInit {
   fetchData() {
     var jsonify = res => res.json();
     var dataFetch = fetch(
+      // 'C:\Users\chris\Documents\capstone\Senior-Capstone-Project-\capstone\src\app\profile-page\points-data.json'
       'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/plotting-multiple-series-on-time-axis-data.json'
     ).then(jsonify);
     var schemaFetch = fetch(
+      // 'C:\Users\chris\Documents\capstone\Senior-Capstone-Project-\capstone\src\app\profile-page\points-schema.json'
       'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/plotting-multiple-series-on-time-axis-schema.json'
     ).then(jsonify);
 
