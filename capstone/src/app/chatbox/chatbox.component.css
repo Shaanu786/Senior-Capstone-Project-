@@ -30,18 +30,19 @@ html {
   .sidebar {
     flex-basis: 30%;
     background-color: #0c4c7c;
-    color: #fff;
+    color: Black;
     padding: 5px 10px;
     
   }
 
   .sidebar section {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 
   .sidebar h2 {
     margin-bottom: 10px;
     border-bottom: 1px solid white; 
+    color:#fff;
 
   }
 
@@ -64,7 +65,7 @@ html {
 
   .presence.online {
     background-color: green;
-    border: .5px solid white;
+    border: 2px solid white;
   }
 
   .chat-window {
@@ -140,9 +141,6 @@ html {
 
 
 
-#content {
-  justify-content: center;
-}
 
 .content {
   position: fixed;
