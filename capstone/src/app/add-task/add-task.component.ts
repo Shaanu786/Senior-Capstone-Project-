@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { TaskService } from '../tasks-service/task-service.service';
-import { MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-add-task',
@@ -12,16 +12,19 @@ export class AddTaskComponent implements OnInit {
     projectId;
     description;
     duedate;
+    user;
     submitTask()
     {
         console.log('submitting task in add task component');
         var newTask = 
         {
             "title": this.title,
-            "projectId": this.projectId,
+            "project": this.data.project,
             "description": this.description,
             "duedate": this.duedate,
+            "user": this.user,
         };
+        console.log(`created new project for project: ${newTask.project}`);
         this.tasks.createTask(newTask);
     }
 	close()
@@ -31,7 +34,8 @@ export class AddTaskComponent implements OnInit {
     }
 
     constructor(private tasks:TaskService,
-                private dialogRef:MatDialogRef<AddTaskComponent>) { }
+                private dialogRef:MatDialogRef<AddTaskComponent>,
+               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }

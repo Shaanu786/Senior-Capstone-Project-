@@ -75,6 +75,14 @@ export class TaskService
     createTask(newTask:any)
     {
        console.log(`received newTask in task service: ${ newTask }`); 
+       var newGuy = {title:newTask.title,
+           description:newTask.description,
+           project:newTask.project,
+           status:'todo',
+           due:newTask.duedate,
+           user:newTask.user,
+           taskid:newTask.title + newTask.project}
+        this.appTasks.push(newGuy);
     }
 
     constructor() { }
