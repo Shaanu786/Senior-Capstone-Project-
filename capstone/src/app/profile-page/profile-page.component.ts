@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as FusionCharts from 'fusioncharts';
-import * as timeseries from 'fusioncharts/fusioncharts.timeseries';
-
-const dataUrl =
-  'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/plotting-multiple-series-on-time-axis-data.json';
-const schemaUrl =
-  'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/plotting-multiple-series-on-time-axis-schema.json';
-
+// import * as timeseries from 'fusioncharts/fusioncharts.timeseries';
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.componentv2.html',
   styleUrls: ['./profile-page.component.css']
 })
+
 export class ProfilePageComponent implements OnInit {
 
   title = "Profile"

@@ -5,6 +5,11 @@ p {
     padding-bottom: 5px;
     text-align: right;
 }
+b {
+    color: black;
+    text-decoration: none;
+}
+
 a {
     color: white;
     text-decoration: none;

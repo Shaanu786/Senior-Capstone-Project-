@@ -1,17 +1,30 @@
-<div id="wrapper">
-    <div id="home">
-        <a [routerLink]="['/home']">
-            <p>Home</p> 
-        </a>
-    </div>
-    <div id="profile">
-        <a [routerLink]="['/profile']">
-            <p>Profile</p> 
-        </a>
-    </div>
-    <div id="logout">
-        <a [routerLink]="['/']">
-            <p>Logout</p> 
-        </a>
+<div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Menu</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>
+            <div id="home">
+              <b [routerLink]="['/home']">
+                Home
+              </b>
+            </div>
+          </button>
+          <button ngbDropdownItem>
+            <div id="profile">
+              <b [routerLink]="['/profile']">
+                Profile 
+              </b>
+            </div>
+          </button>
+          <button ngbDropdownItem>
+            <div id="logout">
+              <b [routerLink]="['/']">
+                Logout
+              </b>
+            </div>
+          </button>
+        </div>
+      </div>
     </div>
 </div>

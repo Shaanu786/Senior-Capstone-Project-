@@ -1,8 +1,8 @@
 <div class="content container-fluid">
     <nav>
-        <app-nav></app-nav>
+        <app-nav style = "position:relative; top:50px;"></app-nav>
         <div id="project-wrapper">
-            <app-project-tab class= "contatiner" *ngFor='let project of projects' [title] = project></app-project-tab>
+            <app-project-tab style= "position:relative; top:0px;" class= "contatiner" *ngFor='let project of projects' [title] = project></app-project-tab>
         </div>
     </nav>
     <header>
