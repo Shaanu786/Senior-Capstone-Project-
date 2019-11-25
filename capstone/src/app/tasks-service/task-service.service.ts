@@ -50,6 +50,7 @@ export class TaskService
     }
     getTodoProject(project:string): Task[] 
     {
+        console.log("in getTodoProject", project);
         return this.getTaskStatusProject('todo', project);
     }
     getFinishedProject(project:string): Task[] 
@@ -85,7 +86,7 @@ export class TaskService
             .then(({ data }) => {
                 this.appTasks = data.map(item => ({
                     'title': item.taskname,
-                    'project': item.projectid,
+                    'project': item.projectname,
                     'status': statuses[item.completeflag],
                     'due': item.duedate
                 }));

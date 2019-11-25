@@ -107,7 +107,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class HomepageComponent implements OnInit {
   title = "Home"
   columns = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
-  projects = ["Project 1","Project 2","Project 3","Project 4","Project 5"]
+  projects = []
   // displayedColumns: string[] = ['title', 'project', 'status'];
   // dataSource = tableTasks;
   dataSource = ELEMENT_DATA;

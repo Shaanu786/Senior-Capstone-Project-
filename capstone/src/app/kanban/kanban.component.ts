@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { TaskService} from '../tasks-service/task-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { async } from 'q';
 
 @Component({
   selector: 'app-kanban',
@@ -28,9 +29,15 @@ export class KanbanComponent implements OnInit {
   }
   constructor(private taskService:TaskService, private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(() =>
+  async ngOnInit() {
+    await this.taskService.fetchTasks();
+    console.log(this.taskService.appTasks);
+    this.route.paramMap.subscribe(async() =>
       {
+          await this.taskService.fetchTasks();
+          //this.project = this.taskService.appTasks[0].project;
+          console.log("In the async func ", this.taskService.appTasks[0].project);
+          console.log("Printing this.project", this.project);
           this.todo = this.taskService.getTodoProject(this.project);
           this.progress = this.taskService.getProgressProject(this.project);
           this.done  = this.taskService.getFinishedProject(this.project);
