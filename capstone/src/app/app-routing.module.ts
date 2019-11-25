@@ -4,17 +4,20 @@ import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'home', component: HomepageComponent},
+  {path: 'home', component: HomepageComponent, canActivate: [AuthGuard]},
   {path: 'project',
     children: [
       {path: '', component: ProjectPageComponent},
       {path: ':id', component: ProjectPageComponent}
-    ]},
-  {path: 'profile', component: ProfilePageComponent}
+    ],
+  canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
+  {path: '**', redirectTo: ''},
 ];
 
 @NgModule({

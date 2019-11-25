@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FrameComponent } from './frame/frame.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { TableComponent } from './table/table.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TableComponent } from './table/table.component';
     NgbModule,
     BrowserAnimationsModule,
     MatTableModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

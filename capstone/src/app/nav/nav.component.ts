@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+    logout() 
+    {
+        console.log(`logging user ${localStorage.getItem('user')} out`);
+        localStorage.removeItem('user');
+    }
 
   constructor() { }
 
