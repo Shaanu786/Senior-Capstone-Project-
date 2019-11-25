@@ -65,13 +65,10 @@ ngOnInit() {
     console.log(this.taskService.appTasks);
     this.route.paramMap.subscribe(async() =>
       {
-          await this.taskService.fetchTasks();
-          //this.project = this.taskService.appTasks[0].project;
-          console.log("In the async func ", this.taskService.appTasks[0].project);
-          console.log("Printing this.project", this.project);
           this.todo = this.taskService.getTodoProject(this.project);
           this.progress = this.taskService.getProgressProject(this.project);
           this.done  = this.taskService.getFinishedProject(this.project);
     })
   }
 }
+ 

@@ -22,7 +22,7 @@ export class AddTaskComponent implements OnInit {
             "title": this.title,
             "project": this.data.project,
             "projectid":this.data.projectid,
-            "description": this.description,
+            //"description": this.description,
             "duedate": this.duedate,
             "user": this.user,
         };

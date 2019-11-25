@@ -55,40 +55,8 @@ app.get('/user/:user/tasks', function(req, response) {
     if (err) {
       response.status(500).json({ message: err });
     }
-    let promises = [];
-    // response.status(200).json({ data: tasks.rows });
-    //console.log(tasks.rows);
-    tasks.rows.forEach(({ projectid }) => {
-      promises.push(new Promise((resolve, reject) => {
-        const subquery = `SELECT projectname FROM kirboprojects WHERE projectid = ${projectid}`;
-        client.query(subquery, (err2, projectName) => {
-          if (err2) {
-            reject(err2);
-          }
-          else {
-            //console.log(projectName.rows[0].projectname)
-            //console.log(projectName.rows[0].projectname);
-            //for (var i = 0; i < tasks.rows.length; i++) {
-            //  tasks.rows[i].projectname = projectName.rows[0].projectname;
-            //}
-            resolve(projectName.rows[0].projectname);
-            //console.log(tasks.rows.unshift(projectName.rows));
-            //console.log(projectName.rows);
-          }
-        })
-      }))
-    });
-    Promise.all(promises)
-        .then(data => { 
-          console.log(data);
-          for (var i = 0; i < tasks.rows.length; i++) {
-            tasks.rows[i].projectname = data[i];
-          }
-          console.log(tasks.rows);
-          response.status(200).json( { data:tasks.rows });
-        })
-        .catch(issue => response.status(500).json({ message: issue }))
-   });
+    response.status(200).json({ data: tasks.rows })
+  });
 });
 
 app.get('/home/:user', function(req, response) {
@@ -128,11 +96,7 @@ app.get('/home/:user', function(req, response) {
       });
       Promise.all(promises)
         .then(data => { 
-          data.forEach(({ projectName }) => {
-            console.log(projectName);
-            console.log("I am here");
-          })
-          console.log( data );
+          console.log(data);
           response.status(200).json({ data });
         })
         .catch(issue => response.status(500).json({ message: issue }))
