@@ -8,6 +8,14 @@ export class UsersService {
     {
         return users.find(user => user.email == email);
     }
+    getUsersProject(project:string): any[]
+    {
+        console.log(`userservice: finding users for project: ${project}`);
+        return users.filter(user => {
+                if ( user.projects.includes(project) ) return true;
+                return false;
+          });
+    }
     authLogin(email:string,password:string):boolean
     {
         console.log('in authlogin');
@@ -32,11 +40,13 @@ export class UsersService {
 }
 export interface User 
 {
+    name:string;
     email:string;
     password:string;
+    projects:string[];
 }
 export const users: User[] =
 [
-    {email:"t@t.com",password:"test"}
+    {name:"donovan",email:"t@t.com",password:"test",projects:['Project 1']}
 
 ]

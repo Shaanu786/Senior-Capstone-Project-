@@ -1,7 +1,13 @@
 <div class="wrapper">
     <div id="buttons">
         <button (click)="openDialog()" id="add" class="btn btn-primary">Add Task</button>
-        <button (click)="refreshLists()" id="refresh" class="btn btn-primary">Refresh Tasks</button>
+        <button (click)="refreshLists()" id="refresh" class="btn btn-primary btn-left-margin">Refresh Tasks</button>
+         <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-primary btn-left-margin" id="dropdownBasic1" ngbDropdownToggle>Team Members</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button ngbDropdownItem *ngFor="let member of members">{{member.name}}</button>
+              </div>
+         </div>
     </div>
     <div class="example-container">
     <h2>To do</h2>

@@ -2,7 +2,7 @@
     display: flex;
     margin-bottom: 10px;
 }
-#refresh {
+.btn-left-margin {
     margin-left:4px;
 
 }

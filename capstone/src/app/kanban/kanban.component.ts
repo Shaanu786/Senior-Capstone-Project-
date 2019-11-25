@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { TaskService} from '../tasks-service/task-service.service';
-import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import {  Router, NavigationStart } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddTaskComponent } from '../add-task/add-task.component';
+import { UsersService } from '../users/users.service';
+import { Task } from '../tasks-service/task-service.service';
 
 @Component({
   selector: 'app-kanban',
@@ -12,10 +14,11 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 })
 export class KanbanComponent implements OnInit {
     @Input() project: string;
-    todo;
-    progress;
-    done;
-    projectUrl;
+    todo:Task[];
+    progress:Task[];
+    done:Task[];
+    projectUrl:string;
+    members: any[];
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -31,7 +34,7 @@ export class KanbanComponent implements OnInit {
   }
   constructor(private dialog:MatDialog,
               private taskService:TaskService,
-              private route: ActivatedRoute,
+              private userService:UsersService,
               private router: Router) { }
 
   openDialog()
@@ -60,7 +63,12 @@ export class KanbanComponent implements OnInit {
           if (event instanceof NavigationStart && event.url.includes('Project')) 
           {
               this.projectUrl = `Project ${event.url.slice(-1)}`;
-              this.refreshLists(this.projectUrl);
+              this.refreshLists();
+              this.members = this.userService.getUsersProject(this.projectUrl);
+              if (this.members.length > 0)
+                  {
+                      console.log(`members found for project ${this.projectUrl}: ${ this.members[0].email }`)
+                  }
           }
       });
   }
