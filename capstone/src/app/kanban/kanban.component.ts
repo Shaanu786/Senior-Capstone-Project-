@@ -53,8 +53,7 @@ export class KanbanComponent implements OnInit {
 
         //dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-        dialogConfig.data = {'project': this.project,
-                             'projectid': this.taskService.appTasks[0].projectid}
+        dialogConfig.data = {'project': this.project}
 
 
         this.dialog.open(AddTaskComponent, dialogConfig);
