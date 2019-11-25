@@ -68,9 +68,22 @@ export class TaskService
             } 
         });
     }
-    getUserTasks(userId:string): Task[] 
+    changeTaskUser(taskItem:string, newUser:string) 
     {
-        return this.appTasks.filter(task => task.user == userId);
+        this.appTasks.forEach(task => 
+       {
+           //@ts-ignore
+           if (task == taskItem)
+            {
+               //@ts-ignore
+               console.log(`updating task ${taskItem.title} to user ${newUser}`);
+              task.user = newUser;
+            } 
+        });
+    }
+    getUserTasks(userid:string): Task[] 
+    {
+        return this.appTasks.filter(task => task.user == userid);
     }
     createTask(newTask:any)
     {

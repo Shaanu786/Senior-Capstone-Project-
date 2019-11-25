@@ -4,6 +4,7 @@ import { TaskService} from '../tasks-service/task-service.service';
 import {  Router, NavigationStart } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddTaskComponent } from '../add-task/add-task.component';
+import { TaskInfoDialogComponent } from '../task-info-dialog/task-info-dialog.component';
 import { UsersService } from '../users/users.service';
 import { Task } from '../tasks-service/task-service.service';
 
@@ -22,6 +23,8 @@ export class KanbanComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      //this.openInfoDialog(event.container.data[event.currentIndex]);
+      this.openInfoDialog(event.container.data[event.currentIndex]);
     } else {
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
@@ -36,15 +39,27 @@ export class KanbanComponent implements OnInit {
               private taskService:TaskService,
               private userService:UsersService,
               private router: Router) { }
+  openInfoDialog(taskitem)
+  {
+		//console.log("in info dialog");
+		const dialogConfig = new MatDialogConfig();
 
-  openDialog()
+        //dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = { 'task':taskitem, 'members': this.members };
+
+        this.dialog.open(TaskInfoDialogComponent, dialogConfig);
+  }
+
+
+  openAddDialog()
   {
 		console.log("in dialog");
 		const dialogConfig = new MatDialogConfig();
 
         //dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-        dialogConfig.data = {'project': this.project};
+        dialogConfig.data = {'project': this.project, 'members':this.members};
 
         this.dialog.open(AddTaskComponent, dialogConfig);
   }

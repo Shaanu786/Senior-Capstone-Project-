@@ -10,7 +10,11 @@
         <input type="date" class="form-control" id="duedate" aria-describedby="duedate" placeholder="Due Date"  [(ngModel)]="duedate" name="duedate">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" id="user" aria-describedby="user" placeholder="Assign User"  [(ngModel)]="user" name="user">
+        <!--<input type="text" class="form-control" id="user" aria-describedby="user" placeholder="Assign User"  [(ngModel)]="user" name="user">-->
+        <select class="form-control" id="userSelect"[(ngModel)]="user" name="user">
+            <option selected>Assign user</option>
+            <option *ngFor="let member of members">{{member.name}}</option>
+        </select>
     </div>
     <button class="btn btn-primary" (click)="close()"(click)="submitTask()">Add Task</button>
 </form>

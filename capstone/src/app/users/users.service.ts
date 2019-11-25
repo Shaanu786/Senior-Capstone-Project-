@@ -44,9 +44,16 @@ export interface User
     email:string;
     password:string;
     projects:string[];
+    major?:string;
 }
 export const users: User[] =
 [
-    {name:"donovan",email:"t@t.com",password:"test",projects:['Project 1']}
+    {name:"donovan",email:"t@t.com",password:"test",projects:['Project 1']},
+    {name:"Chris Barrera",email:"chrislbarrera@gmail.com",password:"chris",projects:['Project 1', 'Project 2'], "major": "Computer Science"},
+    {name:"Collin De Kalb",email:"cjdekalb@gmail.com",password:"collin",projects:['Project 3', 'Project 4'], "major": "Computer Science"},
+    {name:"Xavier Sepulveda",email:"Xavier0922@gmail.com",password:"xavier",projects:['Project 5', 'Project 2'], "major": "Computer Science"},
+    {name:"Shaan Barkat",email:"barkatshaan@gmail.com",password:"shaan",projects:['Project 1', 'Project 4'], "major": "Computer Science"},
+    {name:"Faraz",email:"faraz.nov96@gmail.com",password:"faraz",projects:['Project 2', 'Project 5'], "major": "Computer Science"},
+    {name:"Kyle Klauss",email:"k.klauss99@gmail.com",password:"kyle",projects:['Project 1', 'Project 3'], "major": "Computer Science"},
 
 ]

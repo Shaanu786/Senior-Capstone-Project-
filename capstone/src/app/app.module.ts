@@ -23,6 +23,7 @@ import { TableComponent } from './table/table.component';
 import { FormsModule } from '@angular/forms';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TaskInfoDialogComponent } from './task-info-dialog/task-info-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FrameComponent,
     KanbanComponent,
     TableComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    TaskInfoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule
   ],
   entryComponents: [
-    AddTaskComponent
+    AddTaskComponent,
+    TaskInfoDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
