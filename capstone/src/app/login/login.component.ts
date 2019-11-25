@@ -17,8 +17,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const email = document.getElementById("exampleInputEmail1");
-    const password = document.getElementById("exampleInputPassword1");
+    const email: HTMLInputElement = document.getElementById('exampleInputEmail1').value;
+    const password: HTMLInputElement = document.getElementById("exampleInputPassword1").value;
+    if (!email || !password) {
+      console.warn('all fields are required!');
+      return; // maybe look into messaging user that they need to fill out required fields?
+    }
     fetch('http://localhost:3001/login', {
       "method":"post",
       "headers": {
@@ -28,9 +32,16 @@ export class LoginComponent implements OnInit {
         email,
         password
       })
-    }).then().catch(function(res) {
-      console.log(res);
     })
+      .then(response => response.json())
+      .then((response) => {
+        console.log(response);
+        sessionStorage.setItem('user', JSON.stringify(response.data));
+        this.router.navigate(['/home']);
+      })
+      .catch(response => {
+        alert('Incorrect login credentials. Please try again.');
+      })
   }
 
 }

@@ -8,7 +8,6 @@ const client = new Client({
 	database: 'capstone',
 	port: 5432
 });
-var id = 0;
 
 client.connect(err => {
   if (err) {
@@ -29,33 +28,44 @@ app.use(express.urlencoded({ extended: true })); // for parsinrsg application/x-
 
 app.post('/login', function (req, response) {
   console.log("Login was called"); 
-  //const {email, password} = req.body;
-  const {kirboid, password} = req.body;
-  //console.log(email);
-  //console.log(password);
-  //const query = `SELECT kirboid FROM userprofile WHERE kirboid = ${kirboid}`;
+  const {email, password} = req.body;
+  //const {kirboid, password} = req.body;
+  console.log(email);
+  console.log(password);
+  const query = `SELECT kirboid FROM userprofile WHERE email = '${email}' AND loginpw = '${password}'`;
   //const query = `SELECT email FROM userprofile WHERE email = ${email} AND password = ${password}`;
   //const query = "SELECT kirboid, email, loginpw FROM userprofile WHERE email = " + username + " AND loginpw = " + password;
   client.query(query, (err, res) => {
     if (err) response.status(500).json({"message": err});
     else { 
-      response.status(200).json({"message": res});
-      id = res.rows[0].kirboid;
-      console.log(id);
+      console.log(res);
+      response.status(200).json({ data: {
+        id: res.rows[0].kirboid
+      }});
     }
     //console.log(res);
-    client.end();
   })
 
 });
 
-app.post('/project-page', function(req, response) {
+app.get('/user/:user/tasks', function(req, response) {
+  const id = req.params.user;
+  const query = `SELECT tasksid, projectid, taskname, duedate, completeflag FROM assignedtasks WHERE kirboid = ${id}`;
+  client.query(query, (err, tasks) => {
+    if (err) {
+      response.status(500).json({ message: err });
+    }
+    response.status(200).json({ data: tasks.rows })
+  });
+});
+
+app.get('/home/:user', function(req, response) {
   console.log("project-page was called.");
-  
-  const {kirboid} = req.body;
-  //const query = `SELECT projectid FROM assignedprojects WHERE kirboid = ${kirboid}`;
-  //const query = `SELECT projectname FROM kirboprojects WHERE projectid = 2`;
-  const query = `SELECT projectid FROM assignedprojects WHERE kirboid = ${kirboid}`;
+  const id = req.params.user;
+  console.log(id);
+  const query = `SELECT projectid FROM assignedprojects WHERE kirboid = ${id}`;
+  //const query = `SELECT projectname FROM kirboprojects WHERE projectid = ${id}`;
+  // const query = `SELECT projectid FROM assignedprojects WHERE kirboid = ${kirboid}`;
   //const query = `SELECT projectname FROM assignedprojects JOIN kirboprojects WHERE projectid = (SELECT projectid IN assignedprojects WHERE kirboid = ${kirboid})`;
   client.query(query, (err, projectIds) => {
     if (err) {
@@ -86,11 +96,11 @@ app.post('/project-page', function(req, response) {
       });
       Promise.all(promises)
         .then(data => { 
-          console.log(data); 
-          response.status(200).json({ message: data });
+          console.log(data);
+          response.status(200).json({ data });
         })
         .catch(issue => response.status(500).json({ message: issue }))
-        .finally(() => client.end());
+        //.finally(() => client.end());
     }
   });
 });

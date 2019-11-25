@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Task, tasks } from '../tasksdb/tasks';
 
+const statuses = {
+    0: 'todo',
+    1: 'progress',
+    2: 'finished'
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService 
 {
-    appTasks: Task[] = tasks;
+    appTasks: Task[] = [];
     getAllTasks() 
     {
-        //console.log(tasks);
         return this.appTasks;
     }
     getTaskStatus(status:string): Task[]
     {
-        return this.appTasks.filter(task => task.status == status);
+        return this.appTasks.filter(task => task.status === status);
     }
     getNotFinished(): Task[] 
     {
@@ -55,7 +60,7 @@ export class TaskService
     {
         return this.getTaskStatusProject('progress', project);
     }
-    changeTaskStatus(taskItem:string, newStatus:string) 
+    changeTaskStatus(taskItem:any, newStatus:string) 
     {
         this.appTasks.forEach(task => 
        {
@@ -72,4 +77,18 @@ export class TaskService
     }
 
     constructor() { }
+
+    async fetchTasks() {
+        const { id } = JSON.parse(sessionStorage.getItem('user'));
+        return fetch(`http://localhost:3001/user/${id}/tasks`)
+            .then(res => res.json())
+            .then(({ data }) => {
+                this.appTasks = data.map(item => ({
+                    'title': item.taskname,
+                    'project': item.projectid,
+                    'status': statuses[item.completeflag],
+                    'due': item.duedate
+                }));
+            });
+    }
 }

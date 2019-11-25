@@ -120,6 +120,10 @@ export class HomepageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    fetch(`http://localhost:3001/home/${user.id}`)
+      .then(res => res.json())
+      .then(({ data }) => this.projects = data);
   }
 
 }

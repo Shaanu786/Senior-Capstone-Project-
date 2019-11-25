@@ -10,9 +10,8 @@ export class ProfilePageComponent implements OnInit {
   title = "Profile"
   projects = ["Project 1","Project 2","Project 3","Project 4","Project 5"]
   badges = ["Team Player", "Frontend Specialist", "Crunch Time Hero"]
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {}
 }

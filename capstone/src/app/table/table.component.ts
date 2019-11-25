@@ -18,13 +18,16 @@ import { TaskService} from '../tasks-service/task-service.service';
   ],
 })
 export class TableComponent {
-  dataSource = this.taskService.getNotFinished();
+  dataSource = [];
   columnsToDisplay = ['title', 'project', 'status', 'due'];
   expandedElement: PeriodicElement | null;
   constructor(private taskService:TaskService) { }
-  ngOnInit() {
+  async ngOnInit() {
+    await this.taskService.fetchTasks();
+    this.dataSource = this.taskService.getNotFinished();
   }
 }
+
 
 export interface PeriodicElement {
   project: string;
