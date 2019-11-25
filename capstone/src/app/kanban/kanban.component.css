@@ -1,3 +1,11 @@
+#buttons {
+    display: flex;
+    margin-bottom: 10px;
+}
+.btn-left-margin {
+    margin-left:4px;
+
+}
 .wrapper {
   margin-top:20px;
 }

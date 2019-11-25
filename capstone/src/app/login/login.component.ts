@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 // import { FormControl } from '@angular/forms';
+=======
+import { AuthService } from '../auth/auth.service';
+>>>>>>> b9d4b28c5fa2c54e5d6d060a49c59725b29cbc36
 
 @Component({
   selector: 'login',
@@ -8,13 +12,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  goHome() {
-    this.router.navigate(['/home']);
-  }
-  constructor(private router: Router) { }
+    email;
+    password;
+    goHome() 
+    {
+        console.log(`logging in user ${this.email} with password ${this.password}`);
+        this.auth.userLogin(this.email,this.password)
+        //console.log(`setting user object to: ${this.email}`);
+        this.router.navigate(['/home']);
+    }
+  constructor(private router: Router, private auth:AuthService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onSubmit() {
     const email: HTMLInputElement = document.getElementById('exampleInputEmail1').value;
