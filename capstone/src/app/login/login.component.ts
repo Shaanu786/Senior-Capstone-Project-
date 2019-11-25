@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 // import { FormControl } from '@angular/forms';
+<<<<<<< Updated upstream
 import { AuthService } from '../auth/auth.service';
+=======
+=======
+import { AuthService } from '../auth/auth.service';
+>>>>>>> b9d4b28c5fa2c54e5d6d060a49c59725b29cbc36
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'login',

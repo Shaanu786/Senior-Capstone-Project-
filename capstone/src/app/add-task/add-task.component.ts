@@ -9,20 +9,30 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class AddTaskComponent implements OnInit {
     title;
+<<<<<<< Updated upstream
     project;
     projectid;
+=======
+    projectId;
+>>>>>>> Stashed changes
     description;
     duedate;
     user;
     submitTask()
     {
         console.log('submitting task in add task component');
+<<<<<<< Updated upstream
         console.log('Project id ', this.data.projectid);
+=======
+>>>>>>> Stashed changes
         var newTask = 
         {
             "title": this.title,
             "project": this.data.project,
+<<<<<<< Updated upstream
             "projectid":this.data.projectid,
+=======
+>>>>>>> Stashed changes
             "description": this.description,
             "duedate": this.duedate,
             "user": this.user,
@@ -39,7 +49,14 @@ export class AddTaskComponent implements OnInit {
     constructor(private tasks:TaskService,
                 private dialogRef:MatDialogRef<AddTaskComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any) { }
+<<<<<<< Updated upstream
 ngOnInit() {
 
 }
+=======
+
+  ngOnInit() {
+  }
+
+>>>>>>> Stashed changes
 }
