@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-<<<<<<< Updated upstream
 
 const statuses = {
     0: 'todo',
     1: 'progress',
     2: 'finished'
 };
-=======
->>>>>>> Stashed changes
 
 @Injectable({
   providedIn: 'root'
@@ -44,13 +41,9 @@ export class TaskService
         return this.appTasks.filter(task => 
                                     {
                                         //@ts-ignore
-<<<<<<< Updated upstream
-                                        //console.log(`testing task. status: ${task.status} project: ${task.project}`);
-                                        //console.log(`project to test against: ${project}`)
-=======
+
                                         console.log(`testing task. status: ${task.status} project: ${task.project}`);
                                         console.log(`project to test against: ${project}`)
->>>>>>> Stashed changes
                                         if (task.status != status) return false;
                                         if (task.project != project) return false;
                                         return true;
@@ -76,7 +69,6 @@ export class TaskService
            //@ts-ignore
            if (task == taskItem)
             {
-<<<<<<< Updated upstream
                 //@ts-ignore
                 console.log(`updating task ${taskItem.title} to status ${newStatus}`);
                 task.status = newStatus;
@@ -103,11 +95,10 @@ export class TaskService
                     console.log("oh no");
                 })
               
-=======
+
                //@ts-ignore
                console.log(`updating task ${taskItem.title} to status ${newStatus}`);
               task.status = newStatus;
->>>>>>> Stashed changes
             } 
         });
     }
@@ -125,7 +116,6 @@ export class TaskService
            due:newTask.duedate,
            user:newTask.user,
            taskid:newTask.title + newTask.project}
-<<<<<<< Updated upstream
            fetch('http://localhost:3001/addtask', {
             "method":"post",
             "headers": {
@@ -141,10 +131,7 @@ export class TaskService
                 console.log("oh no");
             });
         this.appTasks.push(newGuy);
-        
-=======
-        this.appTasks.push(newGuy);
->>>>>>> Stashed changes
+
     }
 
     constructor() { }
@@ -174,18 +161,6 @@ export interface Task {
   user:string;
   taskid:string;
 }
-<<<<<<< Updated upstream
-=======
-export interface Task {
-  title:string;
-  description:string;
-  project:string;
-  status:string;
-  due:string;
-  user:string;
-  taskid:string;
-}
->>>>>>> Stashed changes
 
 export const tasks: Task[]= [
   {title:"Take Quiz 03",description:"Review modules 02 &03",project:"Project 2",status:"todo",due:" November 12th, 2019",user:"",taskid:"1"},
