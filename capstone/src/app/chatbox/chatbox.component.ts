@@ -10,7 +10,7 @@ import axios from 'axios';
 })
 
 export class ChatboxComponent {
-  title = 'Angular Chatroom';
+  title = 'Chat Room';
   messages = [];
   users = [];
   currentUser: any;

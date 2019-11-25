@@ -18,7 +18,7 @@ html {
     height: 500px;
     margin: 0 auto;
     display: flex;
-    border: 1px solid #ccc;
+    border: 1px solid Black;
     margin-top: 30px;
   }
 
@@ -35,11 +35,12 @@ html {
   }
 
   .sidebar section {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   .sidebar h2 {
     margin-bottom: 10px;
+    border-bottom: 1px solid white; 
 
   }
 
@@ -79,10 +80,13 @@ html {
   .chat-header, .chat-footer {
     display: flex;
     align-items: center;
+    
   }
 
   .chat-header {
     border-bottom: 1px solid #ccc;
+    background-color: #0c4c7c;
+    border-left: 2px solid white;
   }
 
   .chat-session {
@@ -133,14 +137,10 @@ html {
     
 }
 
-header {
-    grid-area: header;
-    display: grid;
-    background-color: #0c4c7c;
-    color: white;
-    font-size: 100px;
-    align-content: end;
-    border-left: .5px solid white;
+
+
+#content {
+  justify-content: center;
 }
 
 .content {
@@ -154,4 +154,13 @@ header {
   grid-template-areas: 
       "nav header header"
       "nav main empty";
+}
+
+header {
+  grid-area: header;
+  display: grid;
+  background-color: #0c4c7c;
+  color: white;
+  font-size: 100px;
+  align-content: end;
 }
