@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { TaskService} from '../tasks-service/task-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddTaskComponent } from '../add-task/add-task.component';
 
@@ -28,7 +28,10 @@ export class KanbanComponent implements OnInit {
                                             event.container.id);
     }
   }
-  constructor(private dialog:MatDialog,private taskService:TaskService, private route: ActivatedRoute) { }
+  constructor(private dialog:MatDialog,
+              private taskService:TaskService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   openDialog()
   {
@@ -41,12 +44,22 @@ export class KanbanComponent implements OnInit {
 
         this.dialog.open(AddTaskComponent, dialogConfig);
   }
+  refreshLists(project:string)
+  {
+      this.todo = this.taskService.getTodoProject(project);
+      this.progress = this.taskService.getProgressProject(project);
+      this.done  = this.taskService.getFinishedProject(project);
+  }
+
   ngOnInit() {
-    this.route.paramMap.subscribe(() =>
+    this.router.events.subscribe(event =>
       {
-          this.todo = this.taskService.getTodoProject(this.project);
-          this.progress = this.taskService.getProgressProject(this.project);
-          this.done  = this.taskService.getFinishedProject(this.project);
+          //first clicked project will not show them, but shows all of them after
+          if (event instanceof NavigationStart && event.url.includes('Project')) 
+          {
+              var projectUrl = `Project ${event.url.slice(-1)}`;
+              this.refreshLists(projectUrl);
+          }
       });
   }
 
