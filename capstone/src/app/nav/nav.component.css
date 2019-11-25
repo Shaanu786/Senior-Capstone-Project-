@@ -1,4 +1,4 @@
-@import'../project-tab/project-tab.component.css';
+/* @import'../project-tab/project-tab.component.css';
 
 #wrapper {
     display: grid;
@@ -21,7 +21,38 @@ p {
 }
 #logout {
     grid-area: logout;
-}
-/* p {
-    text-align: right;
 } */
+
+@import'../project-tab/project-tab.component.css';
+
+#wrapper {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas: 
+        "home"
+        "profile"
+        "chatroom"
+        "logout";
+        
+}
+p {
+    margin: 0;
+}
+#home {
+    grid-area: home;
+}
+#profile {
+    grid-area: profile;
+}
+#logout {
+    grid-area: logout;
+}
+
+#chatroom {
+    grid-area: chatroom;
+}
+p {
+    text-align: right;
+}

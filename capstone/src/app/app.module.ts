@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,9 +21,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FrameComponent } from './frame/frame.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { TableComponent } from './table/table.component';
-import { FormsModule } from '@angular/forms';
+//import { FormsModule } from '@angular/forms';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ChatboxComponent } from './chatbox/chatbox.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     NavComponent,
     FrameComponent,
     KanbanComponent,
-    TableComponent,
-    AddTaskComponent
+    ChatboxComponent
   ],
   imports: [
     BrowserModule,
@@ -48,11 +49,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     MatTableModule,
     DragDropModule,
-    FormsModule,
-    MatDialogModule
-  ],
-  entryComponents: [
-    AddTaskComponent
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
