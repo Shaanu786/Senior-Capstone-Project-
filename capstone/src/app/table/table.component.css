@@ -2,7 +2,16 @@ table {
   width: 100%;
 }
 
-tr.example-detail-row {
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+/* tr.example-detail-row {
   height: 0;
 }
 
@@ -44,4 +53,4 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 .example-element-description-attribution {
   opacity: 0.5;
-}
+} */

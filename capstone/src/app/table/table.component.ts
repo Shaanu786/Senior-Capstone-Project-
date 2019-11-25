@@ -1,118 +1,88 @@
-import { Component, OnInit } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-//import { Task, tasks } from '../kanban/tasks';
-import { TaskService} from '../tasks-service/task-service.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+// import {MatFormField} from '@angular/material';
+
+export interface UserData {
+  title: string;
+  name: string;
+  progress: string;
+  due: string;
+}
+
+/** Constants used to fill up our data base. */
+const PROGRESS: string[] = [
+  'COMPLETED', 'IN PROGRESS', 'DONE'
+]
+
+const TITLE: string[] = [
+  'Take Quiz 03', 'Update documentation', 'Read Chapters 1-3', 'Implement Command Interface', 'Lab Activity 08',
+  'Complete Assignment 2', 'Observer Pattern', 'Final Project Proposal', 'Eat Dinner', 'Work on Stylized CSS sheet'
+]
+
+const NAMES: string[] = [
+  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
+  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
+];
+const DUE: string[] = [
+  '11/25/19', '11/30/19', '12/2/19', '12/20/19', '1/23/20', '1/31/20', '8/23/20', '5/7/20', '3/14/20',
+  '9/6/20', '8/5/20', '9/4/20', '8/18/20', '8/5/20', '9/12/20', '6/23/20', '2/28/20', '10/20/20'
+]
+
+const PROJECT: string[] = [
+  'X', '1', '2', '3', '4','5','6','7','8','9','10'
+]
 
 /**
- * @title Table with expandable rows
+ * @title Data table with sorting, pagination, and filtering.
  */
 @Component({
   selector: 'app-table',
   styleUrls: ['table.component.css'],
-  templateUrl: 'table.component.html',
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  templateUrl: 'table.component.html'
 })
-export class TableComponent {
-  dataSource = this.taskService.getNotFinished();
-  columnsToDisplay = ['title', 'project', 'status', 'due'];
-  expandedElement: PeriodicElement | null;
-  constructor(private taskService:TaskService) { }
+export class TableComponent implements OnInit {
+  displayedColumns: string[] = ['title', 'name', 'progress', 'due'];
+  dataSource: MatTableDataSource<UserData>;
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  constructor() {
+    // Create 10 users
+    const users = Array.from({length: 10}, (_, k) => createNewUser());
+
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(users);
+   }
+
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }
 
-export interface PeriodicElement {
-  project: string;
-  title: number;
-  status: number;
-  due: string;
-  description: string;
-}
+/** Builds and returns a new User. */
+function createNewUser(): UserData {
+  const name = PROGRESS[Math.round(Math.random() * (PROGRESS.length - 1))]
+  const due = DUE[Math.round(Math.random() * (DUE.length - 1))] 
+  const title = TITLE[Math.round(Math.random() * (TITLE.length - 1))]
+  const progress = PROJECT[Math.round(Math.random() * (PROJECT.length - 1))]
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    title: 1,
-    project: 'Hydrogen',
-    status: 1.0079,
-    due: 'H',
-    description: `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
-        atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`
-  }, {
-    title: 2,
-    project: 'Helium',
-    status: 4.0026,
-    due: 'He',
-    description: `Helium is a chemical element with symbol He and atomic number 2. It is a
-        colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas
-        group in the periodic table. Its boiling point is the lowest among all the elements.`
-  }, {
-    title: 3,
-    project: 'Lithium',
-    status: 6.941,
-    due: 'Li',
-    description: `Lithium is a chemical element with symbol Li and atomic number 3. It is a soft,
-        silvery-white alkali metal. Under standard conditions, it is the lightest metal and the
-        lightest solid element.`
-  }, {
-    title: 4,
-    project: 'Beryllium',
-    status: 9.0122,
-    due: 'Be',
-    description: `Beryllium is a chemical element with symbol Be and atomic number 4. It is a
-        relatively rare element in the universe, usually occurring as a product of the spallation of
-        larger atomic nuclei that have collided with cosmic rays.`
-  }, {
-    title: 5,
-    project: 'Boron',
-    status: 10.811,
-    due: 'B',
-    description: `Boron is a chemical element with symbol B and atomic number 5. Produced entirely
-        by cosmic ray spallation and supernovae and not by stellar nucleosynthesis, it is a
-        low-abundance element in the Solar system and in the Earth's crust.`
-  }, {
-    title: 6,
-    project: 'Carbon',
-    status: 12.0107,
-    due: 'C',
-    description: `Carbon is a chemical element with symbol C and atomic number 6. It is nonmetallic
-        and tetravalent—making four electrons available to form covalent chemical bonds. It belongs
-        to group 14 of the periodic table.`
-  }, {
-    title: 7,
-    project: 'Nitrogen',
-    status: 14.0067,
-    due: 'N',
-    description: `Nitrogen is a chemical element with symbol N and atomic number 7. It was first
-        discovered and isolated by Scottish physician Daniel Rutherford in 1772.`
-  }, {
-    title: 8,
-    project: 'Oxygen',
-    status: 15.9994,
-    due: 'O',
-    description: `Oxygen is a chemical element with symbol O and atomic number 8. It is a member of
-         the chalcogen group on the periodic table, a highly reactive nonmetal, and an oxidizing
-         agent that readily forms oxides with most elements as well as with other compounds.`
-  }, {
-    title: 9,
-    project: 'Fluorine',
-    status: 18.9984,
-    due: 'F',
-    description: `Fluorine is a chemical element with symbol F and atomic number 9. It is the
-        lightest halogen and exists as a highly toxic pale yellow diatomic gas at standard
-        conditions.`
-  }, {
-    title: 10,
-    project: 'Neon',
-    status: 20.1797,
-    due: 'Ne',
-    description: `Neon is a chemical element with symbol Ne and atomic number 10. It is a noble gas.
-        Neon is a colorless, odorless, inert monatomic gas under standard conditions, with about
-        two-thirds the density of air.`
-  },
-];
+  return {
+    title: title,
+    name: name,
+    progress: progress,
+    due: due
+  };
+}

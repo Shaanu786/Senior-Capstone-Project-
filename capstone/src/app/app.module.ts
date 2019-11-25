@@ -14,7 +14,7 @@ import { TaskFloatComponent } from './task-float/task-float.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavComponent } from './nav/nav.component';
-import { MatTableModule} from '@angular/material';
+import { MatTableModule, MatFormFieldModule, MatPaginatorModule} from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FrameComponent } from './frame/frame.component';
@@ -55,6 +55,8 @@ FusionChartsModule.fcRoot(
     NgbModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
     DragDropModule,
     FusionChartsModule // include in imports
   ],
