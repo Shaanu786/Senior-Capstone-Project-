@@ -8,8 +8,9 @@
     grid-template-areas: 
         "home"
         "profile"
-        "logout"
-        "chatroom";
+        "chatroom"
+        "logout";
+        
 }
 p {
     margin: 0;
