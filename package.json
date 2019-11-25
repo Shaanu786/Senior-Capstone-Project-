@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/Shaanu786/Senior-Capstone-Project-#readme",
   "dependencies": {
+    "@pusher/chatkit-client": "^1.13.2",
     "@pusher/chatkit-server": "^2.1.1",
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
