@@ -5,10 +5,12 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
+  {path: 'butts', component: AddTaskComponent},
   {path: 'home', component: HomepageComponent, canActivate: [AuthGuard]},
   {path: 'project',
     children: [

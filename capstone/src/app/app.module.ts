@@ -21,6 +21,8 @@ import { FrameComponent } from './frame/frame.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { TableComponent } from './table/table.component';
 import { FormsModule } from '@angular/forms';
+import { AddTaskComponent } from './add-task/add-task.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { FormsModule } from '@angular/forms';
     NavComponent,
     FrameComponent,
     KanbanComponent,
-    TableComponent
+    TableComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,11 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatTableModule,
     DragDropModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    AddTaskComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

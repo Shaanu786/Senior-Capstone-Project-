@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { TaskService} from '../tasks-service/task-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-kanban',
@@ -26,8 +28,18 @@ export class KanbanComponent implements OnInit {
                                             event.container.id);
     }
   }
-  constructor(private taskService:TaskService, private route: ActivatedRoute) { }
+  constructor(private dialog:MatDialog,private taskService:TaskService, private route: ActivatedRoute) { }
 
+  openDialog()
+  {
+		console.log("in dialog");
+		const dialogConfig = new MatDialogConfig();
+
+        //dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+
+        this.dialog.open(AddTaskComponent, dialogConfig);
+  }
   ngOnInit() {
     this.route.paramMap.subscribe(() =>
       {

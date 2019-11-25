@@ -72,6 +72,10 @@ export class TaskService
     {
         return this.appTasks.filter(task => task.user == userId);
     }
+    createTask(newTask:any)
+    {
+       console.log(`received newTask in task service: ${ newTask }`); 
+    }
 
     constructor() { }
 }
