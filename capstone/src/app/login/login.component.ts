@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
 // import { FormControl } from '@angular/forms';
-=======
 import { AuthService } from '../auth/auth.service';
->>>>>>> b9d4b28c5fa2c54e5d6d060a49c59725b29cbc36
 
 @Component({
   selector: 'login',
@@ -26,8 +23,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-    const email: HTMLInputElement = document.getElementById('exampleInputEmail1').value;
-    const password: HTMLInputElement = document.getElementById("exampleInputPassword1").value;
+    const email:InnerHTML = document.getElementById('emailBox').value;
+    const password:InnerHTML = document.getElementById("passwordBox").value;
+    console.log(email);
+    console.log(password);
     if (!email || !password) {
       console.warn('all fields are required!');
       return; // maybe look into messaging user that they need to fill out required fields?

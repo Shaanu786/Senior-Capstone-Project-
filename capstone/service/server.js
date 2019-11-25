@@ -141,6 +141,75 @@ app.get('/home/:user', function(req, response) {
   });
 });
 
-app.post('/project/*', function (req, res) {
-  
+app.post('/project', function (req, response) {
+  console.log("please give me output");
+  const statuses = {
+    'todo': 0 ,
+    'progress': 1,
+    'finished': 2
+  };
+  const { taskid, newStatus } = req.body;
+
+  const stat = statuses[newStatus];
+  console.log("please", stat);
+
+  const query = `UPDATE assignedtasks SET completeflag = ${stat} WHERE assignedtasks.tasksid = ${taskid}`;
+
+  client.query(query, (err, res) => {
+    if (err) {
+      console.log(stat);
+      response.status(500).json({"message": err});
+    }
+    else { 
+      console.log(res);
+      response.status(200).json({ data: {
+        'taskid': taskid,
+        'status': stat
+      }});
+    }
+    //console.log(res);
+  })
+
+
+});
+
+app.post('/addtask', function (req, response) {
+  console.log("please give me output");
+  const statuses = {
+    'todo': 0 ,
+    'progress': 1,
+    'finished': 2
+  };
+  const { title, description, project, projectid, status, duedate, user, taskid } = req.body;
+
+  const assignedflag = 1
+  const stat = statuses[status];
+  console.log("display user " +  user);
+
+  const query = `INSERT into assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, smallcomment, duedate, assignedflag) VALUES
+                (${taskid}, ${user}, ${projectid}, '${title}', ${stat}, '${description}', ${duedate}, ${assignedflag})`;
+
+  client.query(query, (err, res) => {
+    if (err) {
+      console.log("Please give me output you son of a bitch", res);
+      response.status(500).json({"message": response});
+    }
+    else { 
+      console.log(res);
+      response.status(200).json({ data: {
+        'taskid': taskid,
+        'user':user,
+        'project': project,
+        'projectid':projectid,
+        'taskname':title,
+        'status': stat,
+        'description': description,
+        'duedate':duedate,
+        'assignedflag': assignedflag
+      }});
+    }
+    //console.log(res);
+  })
+
+
 });

@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { TaskService} from '../tasks-service/task-service.service';
-//import { ActivatedRoute } from '@angular/router';
-//import { async } from 'q';
-import {  Router, NavigationStart } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { async } from 'q';
+// import {  Router, NavigationStart, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddTaskComponent } from '../add-task/add-task.component';
-import { UsersService } from '../users/users.service';
-import { Task } from '../tasks-service/task-service.service';
+// import { UsersService } from '../users/users.service';
+// import { Task } from '../tasks-service/task-service.service';
 
 @Component({
   selector: 'app-kanban',
@@ -16,11 +16,9 @@ import { Task } from '../tasks-service/task-service.service';
 })
 export class KanbanComponent implements OnInit {
     @Input() project: string;
-    todo:Task[];
-    progress:Task[];
-    done:Task[];
-    projectUrl:string;
-    members: any[];
+    todo
+    progress
+    done
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -34,10 +32,18 @@ export class KanbanComponent implements OnInit {
                                             event.container.id);
     }
   }
-  constructor(private dialog:MatDialog,
+  constructor(
               private taskService:TaskService,
-              private userService:UsersService,
-              private router: Router) { }
+              private route:ActivatedRoute,
+              private dialog:MatDialog,) {}
+
+  refreshLists()
+  {
+      console.log(`refreshing tasks for project ${this.project}`);
+      this.todo = this.taskService.getTodoProject(this.project);
+      this.progress = this.taskService.getProgressProject(this.project);
+      this.done  = this.taskService.getFinishedProject(this.project);
+  }
 
   openDialog()
   {
@@ -46,20 +52,15 @@ export class KanbanComponent implements OnInit {
 
         //dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-        dialogConfig.data = {'project': this.project};
+        dialogConfig.data = {'project': this.project,
+                             'projectid': this.taskService.appTasks[0].projectid}
+
 
         this.dialog.open(AddTaskComponent, dialogConfig);
   }
-  refreshLists()
-  {
-      console.log(`refreshing tasks for project ${this.projectUrl}`);
-      this.todo = this.taskService.getTodoProject(this.projectUrl);
-      this.progress = this.taskService.getProgressProject(this.projectUrl);
-      this.done  = this.taskService.getFinishedProject(this.projectUrl);
-  }
 
-  async ngOnInit() {
-    await this.taskService.fetchTasks();
+ngOnInit() {
+    //await this.taskService.fetchTasks();
     console.log(this.taskService.appTasks);
     this.route.paramMap.subscribe(async() =>
       {

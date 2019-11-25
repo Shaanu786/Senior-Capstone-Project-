@@ -9,17 +9,20 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class AddTaskComponent implements OnInit {
     title;
-    projectId;
+    project;
+    projectid;
     description;
     duedate;
     user;
     submitTask()
     {
         console.log('submitting task in add task component');
+        console.log('Project id ', this.data.projectid);
         var newTask = 
         {
             "title": this.title,
             "project": this.data.project,
+            "projectid":this.data.projectid,
             "description": this.description,
             "duedate": this.duedate,
             "user": this.user,
@@ -36,8 +39,7 @@ export class AddTaskComponent implements OnInit {
     constructor(private tasks:TaskService,
                 private dialogRef:MatDialogRef<AddTaskComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any) { }
+ngOnInit() {
 
-  ngOnInit() {
-  }
-
+}
 }
