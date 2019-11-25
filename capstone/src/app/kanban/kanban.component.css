@@ -1,6 +1,10 @@
-#add {
-    display: block;
+#buttons {
+    display: flex;
     margin-bottom: 10px;
+}
+#refresh {
+    margin-left:4px;
+
 }
 .wrapper {
   margin-top:20px;
