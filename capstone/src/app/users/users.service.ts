@@ -32,7 +32,7 @@ export class UsersService {
             return false;
         }
         console.log(`user object found ${found.email} setting user object`);
-        localStorage.setItem("user", email);
+        localStorage.setItem("user", found.email);
         return true;  
     }
 

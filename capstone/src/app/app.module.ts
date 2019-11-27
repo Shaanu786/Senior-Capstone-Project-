@@ -24,6 +24,17 @@ import { FormsModule } from '@angular/forms';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TaskInfoDialogComponent } from './task-info-dialog/task-info-dialog.component';
+// import { FusionChartsModule } from 'angular-fusioncharts';
+// import * as FusionCharts from 'angular-fusioncharts';
+// import * as Charts from 'fusioncharts/fusioncharts.charts';
+// import * as TimeSeries from 'fusioncharts/fusioncharts.timeseries';
+
+// Add dependencies to FusionChartsModule
+// FusionChartsModule.fcRoot(
+  // FusionCharts, 
+  // Charts,
+  // TimeSeries
+// )
 
 @NgModule({
   declarations: [

@@ -1,33 +1,40 @@
-<app-nav></app-nav>
-<div  class="container col-md-10">
-    <h2 id="title"[routerLink] = "['/']" >{{title}}</h2>
-</div>
-<div id="the-line" class = "col-md-10 container"></div>
-<div id="project-tabs" class="tabs">
-    <app-project-tab *ngFor='let project of projects' [title] = project></app-project-tab>
-</div>
-<div id="content" class="col-md-12 container horizontal">
-    <div id="left" class="vertical">
-        <div id="top" class="horizontal">
-            <div id="pic-placeholder"></div>
-            <div id="contact" class="vertical">
-                <address>
-                    <h3>{{user.name}}</h3>
-                    <p>{{user.email}}</p> <br>
-                    <p>{{user.major}}</p> <br>
-                </address>
+ <div class="content container-fluid">
+        <nav>
+            <app-nav style = "position:relative; top:50px;"></app-nav>
+            <div id="project-wrapper">
+                <app-project-tab style= "position:relative; top:0px;" class= "contatiner" *ngFor='let project of projects' [title] = project></app-project-tab>
             </div>
-        </div>
-        <div id='space'></div>
-        <div id="bottom" class="horizontal">
-            <section id="badges" class="vertical">
-                <h3 class="title">Badges</h3>
-                <p *ngFor="let badge of badges" class="badge-custom">{{badge}}</p>
-            </section>
-            <section id="graphs" class="vertical">
-                <h1>THIS IS WHERE ANALYTICS WILL GO</h1>
-            </section>
-        </div>
-    </div>
-
-</div>
+        </nav>
+        <header>
+            <p id="title"[routerLink] = "['/']" >{{title}}</p>
+            <div id="the-line" class = "col-md-10 container"></div>
+        </header>
+        <div class="empty"></div>
+        <main>
+                <div id='space'></div>
+                <div id="content" class="col-md-12 container horizontal">
+                        <div id="left" class="vertical">
+                            <div id="top" class="horizontal">
+                                <div id="pic-placeholder"></div>
+                                <div id="contact" class="vertical">
+                                    <address>
+                                        <h3>{{user.name}}</h3>
+                                        <p>{{user.email}}</p> <br>
+                                        <p>{{user.major}}</p> <br>
+                                    </address>
+                                </div>
+                            </div>
+                            <div id='space'></div>
+                            <div id="bottom" class="horizontal">
+                                <section id="badges" class="vertical">
+                                    <h3 class="title">Badges</h3>
+                                    <p *ngFor="let badge of badges" class="badge-custom">{{badge}}</p>
+                                </section>
+                                <section id="graphs" class="horizontal">
+                                        <h1>THIS IS WHERE ANALYTICS WILL GO</h1>
+                                </section>
+                            </div>
+                        </div>
+                    
+                    </div>
+        </main>

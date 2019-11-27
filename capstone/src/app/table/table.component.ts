@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { TaskService} from '../tasks-service/task-service.service';
+import { UsersService } from '../users/users.service';
 
 /**
  * @title Table with expandable rows
@@ -18,10 +19,11 @@ import { TaskService} from '../tasks-service/task-service.service';
   ],
 })
 export class TableComponent {
-  dataSource = this.taskService.getNotFinished();
+  user = this.userService.getUser(localStorage.getItem('user'));
+  dataSource = this.taskService.getUserTasks(this.user.name);
   columnsToDisplay = ['title', 'project', 'status', 'due'];
   expandedElement: PeriodicElement | null;
-  constructor(private taskService:TaskService) { }
+  constructor(private userService:UsersService, private taskService:TaskService) { }
   ngOnInit() {
   }
 }
