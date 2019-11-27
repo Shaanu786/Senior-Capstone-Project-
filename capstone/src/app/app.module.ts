@@ -40,7 +40,9 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     NavComponent,
     FrameComponent,
     KanbanComponent,
-    ChatboxComponent
+    ChatboxComponent,
+    AddTaskComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     BrowserAnimationsModule,
     MatTableModule,
     DragDropModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

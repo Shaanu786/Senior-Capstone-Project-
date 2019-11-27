@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { FormControl } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -13,6 +12,9 @@ export class LoginComponent implements OnInit {
     password;
     goHome() 
     {
+        if (!this.email || !this.password) {
+          console.warn('all fields are required!');
+        }
         console.log(`logging in user ${this.email} with password ${this.password}`);
         this.auth.userLogin(this.email,this.password)
         //console.log(`setting user object to: ${this.email}`);
@@ -23,33 +25,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-    const email:InnerHTML = document.getElementById('emailBox').value;
-    const password:InnerHTML = document.getElementById("passwordBox").value;
-    console.log(email);
-    console.log(password);
+    const email: HTMLInputElement= document.getElementById('emailBox').value;
+    const password: HTMLInputElement = document.getElementById("passwordBox").value;
+    console.log(email, password);
     if (!email || !password) {
       console.warn('all fields are required!');
       return; // maybe look into messaging user that they need to fill out required fields?
     }
-    fetch('http://localhost:3001/login', {
-      "method":"post",
-      "headers": {
-        "Content-Type":"application/json"
-      },
-      "body":JSON.stringify({
-        email,
-        password
-      })
-    })
-      .then(response => response.json())
-      .then((response) => {
-        console.log(response);
-        sessionStorage.setItem('user', JSON.stringify(response.data));
-        this.router.navigate(['/home']);
-      })
-      .catch(response => {
-        alert('Incorrect login credentials. Please try again.');
-      })
   }
 
 }

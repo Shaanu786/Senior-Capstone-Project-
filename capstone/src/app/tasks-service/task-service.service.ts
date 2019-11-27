@@ -41,7 +41,6 @@ export class TaskService
         return this.appTasks.filter(task => 
                                     {
                                         //@ts-ignore
-
                                         console.log(`testing task. status: ${task.status} project: ${task.project}`);
                                         console.log(`project to test against: ${project}`)
                                         if (task.status != status) return false;
@@ -69,33 +68,6 @@ export class TaskService
            //@ts-ignore
            if (task == taskItem)
             {
-                //@ts-ignore
-                console.log(`updating task ${taskItem.title} to status ${newStatus}`);
-                task.status = newStatus;
-                const taskid = task.taskid;
-                console.log("taskid", task);
-                console.log(task.status);
-                
-                fetch('http://localhost:3001/project', {
-                "method":"post",
-                "headers": {
-                    "Content-Type":"application/json"
-                },
-                "body":JSON.stringify({
-                    taskid,
-                    newStatus
-                })
-                })
-                .then(response => response.json())
-                .then((response) => {
-                    console.log(response);
-                    this.fetchTasks();
-                })
-                .catch(response => {
-                    console.log("oh no");
-                })
-              
-
                //@ts-ignore
                console.log(`updating task ${taskItem.title} to status ${newStatus}`);
               task.status = newStatus;
@@ -116,22 +88,7 @@ export class TaskService
            due:newTask.duedate,
            user:newTask.user,
            taskid:newTask.title + newTask.project}
-           fetch('http://localhost:3001/addtask', {
-            "method":"post",
-            "headers": {
-                "Content-Type":"application/json"
-            },
-            })
-            .then(response => response.json())
-            .then((response) => {
-                console.log(response);
-                this.fetchTasks();
-            })
-            .catch(response => {
-                console.log("oh no");
-            });
         this.appTasks.push(newGuy);
-
     }
 
     constructor() { }
@@ -141,13 +98,11 @@ export class TaskService
         return fetch(`http://localhost:3001/user/${id}/tasks`)
             .then(res => res.json())
             .then(({ data }) => {
-                console.log("I am in the fetch tasks function", data);
                 this.appTasks = data.map(item => ({
                     'title': item.taskname,
                     'project': item.projectname,
                     'status': statuses[item.completeflag],
-                    'due': item.duedate,
-                    'tasksid': item.tasksid
+                    'due': item.duedate
                 }));
             });
     }

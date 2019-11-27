@@ -18,26 +18,31 @@ export class UsersService {
     }
     authLogin(email:string,password:string):boolean
     {
-        console.log('in authlogin');
-        const found = users.find(user => 
-        {
-          if (user.email !== email) return false;
-          if (user.password !== password) return false;
-          return true;
-        });
-
-        if (typeof found == "undefined")
-        {
-            console.log('no user found');
-            return false;
-        }
-        console.log(`user object found ${found.email} setting user object`);
-        localStorage.setItem("user", email);
-        return true;  
-    }
+      fetch('http://localhost:3001/login', {
+      "method":"post",
+      "headers": {
+        "Content-Type":"application/json"
+      },
+      "body":JSON.stringify({
+        email,
+        password
+      })
+    })
+      .then(response => response.json())
+      .then((response) => {
+        console.log(response);
+        sessionStorage.setItem('user', JSON.stringify(response.data));
+        return true;
+      })
+      .catch(response => {
+        alert('Incorrect login credentials. Please try again.');
+      })
+      return false;
+  }
 
   constructor() { }
 }
+
 export interface User 
 {
     name:string;

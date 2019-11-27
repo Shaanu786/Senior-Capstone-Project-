@@ -9,24 +9,22 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class AddTaskComponent implements OnInit {
     title;
-    project;
-    projectid;
+    projectId;
+    description;
     duedate;
     user;
     submitTask()
     {
         console.log('submitting task in add task component');
-        console.log('Project id ', this.data.projectid);
         var newTask = 
         {
             "title": this.title,
             "project": this.data.project,
-            "projectid":this.data.projectid,
-            //"description": this.description,
+            "description": this.description,
             "duedate": this.duedate,
             "user": this.user,
         };
-        console.log(`created new project for project: ${newTask.project}`);
+        console.log(`created new task for project: ${newTask.project}`);
         this.tasks.createTask(newTask);
     }
 	close()
@@ -41,4 +39,5 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit() {
   }
-  }
+
+}

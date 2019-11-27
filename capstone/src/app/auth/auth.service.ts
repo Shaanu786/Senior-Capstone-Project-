@@ -13,7 +13,7 @@ export class AuthService {
     isAuthenticated(): boolean
     {
         console.log('in authservice');
-        if (localStorage.getItem('user') == null) return false;
+        if (sessionStorage.getItem('user') == null) return false;
         return true;
     }
   constructor(private users:UsersService) { }
