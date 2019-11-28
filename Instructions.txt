@@ -1,0 +1,8 @@
+1. Database is a postgreSQL db. Install postgres on your machine and create a new db named capstone. Recommended Guide Here: http://www.postgresqltutorial.com/install-postgresql/
+2. Create table and relations in the database with the capstone.psql file.
+3. Populate the db with the sampleinput.sql file.
+4. cd into the Senior-Capstone-Project/capstone.
+5. Run 'npm start' to start the angular frontend. 
+6. Run 'npm run service' to start the database.
+7. Go to http://localhost:4200/ on your browser to open to the login page.
+8. Interact with the project using the sample users found in the db.
