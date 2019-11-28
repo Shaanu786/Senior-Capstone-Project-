@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <div id="buttons">
+        <button (click)="openAddDialog()" id="add" class="btn btn-primary">Add Task</button>
+        <button (click)="refreshLists()" id="refresh" class="btn btn-primary btn-left-margin">Refresh Tasks</button>
+         <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-primary btn-left-margin" id="dropdownBasic1" ngbDropdownToggle>Team Members</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button [routerLink]="['/profile', member.email]" [state]="{user:member}" ngbDropdownItem *ngFor="let member of members">{{member.name}}</button>
+              </div>
+         </div>
+    </div>
+    <div class="example-container">
+    <h2>To do</h2>
+
+    <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[progressList, doneList]"
+        class="example-list"
+        id = "todo"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.title}}</div>
+    </div>
+    </div>
+
+    <div class="example-container">
+    <h2>In Progress</h2>
+
+    <div
+        cdkDropList
+        #progressList="cdkDropList"
+        [cdkDropListData]="progress"
+        [cdkDropListConnectedTo]="[todoList, doneList]"
+        class="example-list"
+        id = "progress"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of progress" cdkDrag>{{item.title}}</div>
+    </div>
+    </div>
+
+    <div class="example-container">
+    <h2>Done</h2>
+
+    <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[progressList, todoList]"
+        class="example-list"
+        id = "finished"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.title}}</div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Add Task</h1>
+<form>
+    <div class="form-group">
+        <input type="text" class="form-control" id="taskTitle" aria-describedby="taskTitle" placeholder="Task Title" required [(ngModel)]="title" name="title">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="description" aria-describedby="description" placeholder="Description"  [(ngModel)]="description" name="description">
+    </div>
+    <div class="form-group">
+        <input type="date" class="form-control" id="duedate" aria-describedby="duedate" placeholder="Due Date"  [(ngModel)]="duedate" name="duedate">
+    </div>
+    <div class="form-group">
+        <!--<input type="text" class="form-control" id="user" aria-describedby="user" placeholder="Assign User"  [(ngModel)]="user" name="user">-->
+        <select class="form-control" id="userSelect"[(ngModel)]="user" name="user">
+            <option selected>Assign user</option>
+            <option *ngFor="let member of members">{{member.name}}</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" (click)="close()"(click)="submitTask()">Add Task</button>
+</form>

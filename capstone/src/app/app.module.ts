@@ -14,6 +14,16 @@ import { TaskFloatComponent } from './task-float/task-float.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavComponent } from './nav/nav.component';
+import { MatTableModule} from '@angular/material';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FrameComponent } from './frame/frame.component';
+import { KanbanComponent } from './kanban/kanban.component';
+import { TableComponent } from './table/table.component';
+import { FormsModule } from '@angular/forms';
+import { AddTaskComponent } from './add-task/add-task.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TaskInfoDialogComponent } from './task-info-dialog/task-info-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +36,26 @@ import { NavComponent } from './nav/nav.component';
     TaskFloatComponent,
     ProjectPageComponent,
     ProfilePageComponent,
-    NavComponent
+    NavComponent,
+    FrameComponent,
+    KanbanComponent,
+    TableComponent,
+    AddTaskComponent,
+    TaskInfoDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    DragDropModule,
+    FormsModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    AddTaskComponent,
+    TaskInfoDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

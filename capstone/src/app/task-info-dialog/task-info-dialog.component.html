@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Task Info</h1>
+<p>{{task.title}}</p>
+<p>{{task.description}}</p>
+<p>{{task.status}}</p>
+<p>{{task.due}}</p>
+<p>{{task.user}}</p>
+<form>
+    <div class="form-group">
+        <select class="form-control" id="userSelect"[(ngModel)]="user" name="user">
+            <option *ngFor="let member of members">{{member.name}}</option>
+        </select>
+    </div>
+</form>
+<button class="btn btn-primary"(click)="assign()">Assign to New User</button>

@@ -8,18 +8,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProjectPageComponent implements OnInit {
 
-  title = "Project"
-  projects = ["Project 1","Project 2","Project 3","Project 4","Project 5"]
+  title;
+  projects = []
+  projectids = []
   team_members = ["This","Is","Where","Team","Members", "Go"]
-  columns = ["Todo","In Progress","Finished"]
   constructor(private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    // this.title = history.state.data
-    this.route.paramMap.subscribe(params =>
+    async ngOnInit() {
+      const user = JSON.parse(sessionStorage.getItem('user'));
+        await fetch(`http://localhost:3001/home/${user.id}`)
+        .then(res => res.json())
+        .then(({data}) => {
+          for (let i = 0; i < data.length; i++) {
+            this.projects.push(data[i].projectname);
+            this.projectids.push(data[i].projectid);
+          }
+        });
+        console.log("I am in the project page component", this.projects);
+        console.log("I am in the project page component", this.projectids);
+      this.route.paramMap.subscribe(params =>
       {
-        this.title = params.get('id')
-      })
+        console.log(params);
+        this.title = params.get('id');
+      });
+      console.log("I am here");
   }
 
 }

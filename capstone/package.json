@@ -7,19 +7,27 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "service": "nodemon ./service/server.js"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.8",
+    "@angular/cdk": "~8.2.3",
     "@angular/common": "~8.2.8",
     "@angular/compiler": "~8.2.8",
     "@angular/core": "~8.2.8",
     "@angular/forms": "~8.2.8",
+    "@angular/material": "^8.2.3",
     "@angular/platform-browser": "~8.2.8",
     "@angular/platform-browser-dynamic": "~8.2.8",
     "@angular/router": "~8.2.8",
     "@ng-bootstrap/ng-bootstrap": "^5.1.1",
+    "@pusher/chatkit-client": "^1.13.2",
+    "axios": "^0.19.0",
+    "hammerjs": "^2.0.8",
+    "nodemon": "^1.19.4",
+    "pg": "^7.12.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
