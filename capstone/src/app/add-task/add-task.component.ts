@@ -13,6 +13,7 @@ export class AddTaskComponent implements OnInit {
     description;
     duedate;
     user;
+    members = this.data.members;
     submitTask()
     {
         console.log('submitting task in add task component');
@@ -24,13 +25,14 @@ export class AddTaskComponent implements OnInit {
             "duedate": this.duedate,
             "user": this.user,
         };
-        console.log(`created new task for project: ${newTask.project}`);
+        console.log(`created new project for project: ${newTask.project}`);
         this.tasks.createTask(newTask);
     }
 	close()
     {
-        console.log("closing dialog");
+       console.log("closing dialog");
        this.dialogRef.close(); 
+       console.log(this.data);
     }
 
     constructor(private tasks:TaskService,

@@ -23,16 +23,5 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private auth:AuthService) { }
 
   ngOnInit() { }
-
-  onSubmit() {
-    const email: HTMLInputElement= document.getElementById('emailBox').value;
-    const password: HTMLInputElement = document.getElementById("passwordBox").value;
-    console.log(email, password);
-    if (!email || !password) {
-      console.warn('all fields are required!');
-      return; // maybe look into messaging user that they need to fill out required fields?
-    }
-  }
-
 }
 

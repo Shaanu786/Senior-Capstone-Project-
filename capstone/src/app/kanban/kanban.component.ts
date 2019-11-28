@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { TaskService} from '../tasks-service/task-service.service';
-import { ActivatedRoute } from '@angular/router';
-//import { async } from 'q';
-import {  Router, NavigationStart } from '@angular/router';
+import {  Router, NavigationStart, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddTaskComponent } from '../add-task/add-task.component';
+import { TaskInfoDialogComponent } from '../task-info-dialog/task-info-dialog.component';
 import { UsersService } from '../users/users.service';
 import { Task } from '../tasks-service/task-service.service';
 
@@ -24,6 +23,8 @@ export class KanbanComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      //this.openInfoDialog(event.container.data[event.currentIndex]);
+      this.openInfoDialog(event.container.data[event.currentIndex]);
     } else {
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
@@ -37,17 +38,29 @@ export class KanbanComponent implements OnInit {
   constructor(private dialog:MatDialog,
               private taskService:TaskService,
               private userService:UsersService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
+  openInfoDialog(taskitem)
+  {
+		//console.log("in info dialog");
+		const dialogConfig = new MatDialogConfig();
 
-  openDialog()
+        //dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = { 'task':taskitem, 'members': this.members };
+
+        this.dialog.open(TaskInfoDialogComponent, dialogConfig);
+  }
+
+
+  openAddDialog()
   {
 		console.log("in dialog");
 		const dialogConfig = new MatDialogConfig();
 
         //dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-        dialogConfig.data = {'project': this.project};
+        dialogConfig.data = {'project': this.project, 'members':this.members};
 
         this.dialog.open(AddTaskComponent, dialogConfig);
   }
@@ -60,6 +73,7 @@ export class KanbanComponent implements OnInit {
   }
 
   async ngOnInit() {
+    await this.userService.fetchUsers();
     await this.taskService.fetchTasks();
     console.log(this.taskService.appTasks);
     this.route.paramMap.subscribe(() =>
@@ -67,6 +81,7 @@ export class KanbanComponent implements OnInit {
           this.todo = this.taskService.getTodoProject(this.project);
           this.progress = this.taskService.getProgressProject(this.project);
           this.done  = this.taskService.getFinishedProject(this.project);
+          this.members = this.userService.getUsersProject(this.project);
     })
   }
 }

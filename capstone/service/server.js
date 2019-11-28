@@ -38,7 +38,7 @@ app.post('/login', function (req, response) {
   client.query(query, (err, res) => {
     if (err) response.status(500).json({"message": err});
     else { 
-      console.log(res);
+      //console.log(res);
       response.status(200).json({ data: {
         id: res.rows[0].kirboid
       }});
@@ -47,6 +47,56 @@ app.post('/login', function (req, response) {
   })
 
 });
+
+app.get('/user', function(req, response) {
+  console.log("I'm in");
+  const query = `SELECT kirboid, firstname, lastname, email, major FROM userprofile`;
+  client.query(query, (err, users) => {
+    if (err) response.status(500).json({"message": err});
+    else {
+      let promises = [];
+      // console.log("users", users.rows);
+      users.rows.forEach(({ kirboid }) => {
+        promises.push(new Promise((resolve, reject) => {
+          const subquery = `SELECT kirboid, projectid FROM assignedprojects WHERE kirboid = ${kirboid}`;
+          client.query(subquery, (err2, projectids) => {
+            if (err2) {
+              reject(err2);
+              // response.status(500).json({
+              //   "mess": err2
+              // })
+            } else {
+              let pids = []
+              for (let i = 0; i < projectids.rows.length; i++) {
+                pids.push(projectids.rows[i].projectid);
+              }
+              //console.log("PIDS array right before assignment", pids);
+              
+              //console.log("In /user last else printing users" + users.rows);
+              resolve({'projectid':pids});
+              // console.log(projectName.rows[0].projectname);
+              //response.status(200).json({"mess": res});
+              // console.log(respo.rows[0].projectname);
+            }
+          })
+        }))
+      });
+      Promise.all(promises)
+        .then(data => { 
+          //console.log("SHIT", data);
+          for (let i = 0; i < users.rows.length; i++) {
+            //console.log(users.rows[i]);
+            //console.log(data[i].projectid);
+            users.rows[i].projectid = data[i].projectid;
+            //console.log("pls");
+          }
+          //console.log("???",users.rows);
+          response.status(200).json({ data: users.rows });
+        })
+        .catch(issue => response.status(500).json({ message: issue }))
+    }
+  })
+})
 
 app.get('/user/:user/tasks', function(req, response) {
   const id = req.params.user;
@@ -60,7 +110,7 @@ app.get('/user/:user/tasks', function(req, response) {
 });
 
 app.get('/home/:user', function(req, response) {
-  console.log("project-page was called.");
+  //console.log("project-page was called.");
   const id = req.params.user;
   console.log(id);
   const query = `SELECT projectid FROM assignedprojects WHERE kirboid = ${id}`;
@@ -87,7 +137,7 @@ app.get('/home/:user', function(req, response) {
               // })
             } else {
               resolve(projectName.rows[0].projectname);
-              // console.log(projectName.rows[0].projectname);
+              //console.log(projectName.rows[0].projectname);
               //response.status(200).json({"mess": res});
               // console.log(respo.rows[0].projectname);
             }
@@ -105,6 +155,9 @@ app.get('/home/:user', function(req, response) {
   });
 });
 
-app.post('/project/*', function (req, res) {
+app.post('/project', function (req, res) {
+
+  const query = `INSERT INTO assignedtasks () VALUES ()`
   
 });
+
