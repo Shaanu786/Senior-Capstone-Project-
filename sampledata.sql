@@ -1,0 +1,40 @@
+INSERT INTO userprofile (kirboid, firstname, lastname, major, email, loginpw) VALUES (1, 'Kyle', 'Klauss', 'Computer Science', 'kyle@test.com', 'password');
+INSERT INTO userprofile (kirboid, firstname, lastname, major, email, loginpw) VALUES (2, 'Collin', 'DeKalb', 'Computer Science', 'collin@test.com', 'password');
+INSERT INTO userprofile (kirboid, firstname, lastname, major, email, loginpw) VALUES (3, 'Faraz', 'Ali', 'Computer Science', 'faraz@test.com', 'password');
+INSERT INTO userprofile (kirboid, firstname, lastname, major, email, loginpw) VALUES (4, 'Shaan', 'Barkat', 'Computer Science', 'shaan@test.com', 'password');
+INSERT INTO userprofile (kirboid, firstname, lastname, major, email, loginpw) VALUES (5, 'Chris', 'Barrera', 'Computer Science', 'chris@test.com', 'password');
+INSERT INTO userprofile (kirboid, firstname, lastname, major, email, loginpw) VALUES (6, 'Xavier', 'Sepulve', 'Computer Science', 'xavier@test.com', 'password');
+
+INSERT INTO kirboprojects (1, 'Project 1');
+INSERT INTO kirboprojects (2, 'Project 2');
+INSERT INTO kirboprojects (3, 'Project 3');
+INSERT INTO kirboprojects (4, 'Project 4');
+INSERT INTO kirboprojects (5, 'Project 5');
+
+INSERT INTO assignedprojects (1, 1);
+INSERT INTO assignedprojects (1, 2);
+INSERT INTO assignedprojects (2, 2);
+INSERT INTO assignedprojects (2, 3);
+INSERT INTO assignedprojects (3, 3);
+INSERT INTO assignedprojects (3, 4);
+INSERT INTO assignedprojects (4, 4);
+INSERT INTO assignedprojects (4, 5);
+INSERT INTO assignedprojects (5, 5);
+INSERT INTO assignedprojects (5, 6);
+INSERT INTO assignedprojects (6, 6);
+INSERT INTO assignedprojects (6, 1);
+
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (1, 1, 1, 'Finish Assignment 1', 0, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (2, 1, 1, 'Finish Assignment 2', 0, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (3, 1, 2, 'Work on Backend', 1, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (4, 2, 2, 'Finish Assignment 1', 0, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (5, 2, 2, 'Work on frontend', 0, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (6, 2, 3, 'Finish Assignment 4', 1, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (7, 3, 3, 'Do things', 0, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (8, 3, 4, 'Other things', 1, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (9, 4, 4, 'Task 1', 0, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (10, 4, 5, 'Task to do', 1, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (11, 5, 5, 'Complete task', 0, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (12, 5, 6, 'Do this', 1, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (13, 6, 6, 'Other task', 0, '2019/1/1', 1);
+INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) VALUES (14, 6, 1, 'Complete instructions', 1, '2019/1/1', 1);
