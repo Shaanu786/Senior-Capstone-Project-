@@ -100,109 +100,14 @@ app.get('/user', function(req, response) {
 
 app.get('/user/:user/tasks', function(req, response) {
   const id = req.params.user;
-  const query = `SELECT kirboid, tasksid, projectid, taskname, duedate, completeflag FROM assignedtasks WHERE kirboid = ${id}`;
+  const query = `SELECT tasksid, projectid, taskname, duedate, completeflag FROM assignedtasks WHERE kirboid = ${id}`;
   client.query(query, (err, tasks) => {
     if (err) {
       response.status(500).json({ message: err });
     }
-    let promises = [];
-    // response.status(200).json({ data: tasks.rows });
-    //console.log(tasks.rows);
-    tasks.rows.forEach(({ projectid }) => {
-      promises.push(new Promise((resolve, reject) => {
-        const subquery = `SELECT projectname FROM kirboprojects WHERE projectid = ${projectid}`;
-        client.query(subquery, (err2, projectName) => {
-          if (err2) {
-            reject(err2);
-          }
-          else {
-            //console.log(projectName.rows[0].projectname)
-            //console.log(projectName.rows[0].projectname);
-            //for (var i = 0; i < tasks.rows.length; i++) {
-            //  tasks.rows[i].projectname = projectName.rows[0].projectname;
-            //}
-            resolve(projectName.rows[0].projectname);
-            //console.log(tasks.rows.unshift(projectName.rows));
-            //console.log(projectName.rows);
-          }
-        })
-      }))
-    });
-    Promise.all(promises)
-        .then(data => { 
-          // console.log(data);
-          for (var i = 0; i < tasks.rows.length; i++) {
-            tasks.rows[i].projectname = data[i];
-          }
-          //console.log("In server", tasks.rows);
-          response.status(200).json( { data:tasks.rows });
-        })
-        .catch(issue => response.status(500).json({ message: issue }))
-   });
+    response.status(200).json({ data: tasks.rows })
+  });
 });
-
-app.post('/project', function (req, response) {
-  console.log("please give me output");
-  const statuses = {
-    'todo': 0 ,
-    'progress': 1,
-    'finished': 2
-  };
-  const { taskid, newStatus } = req.body;
-
-  const stat = statuses[newStatus];
-  // console.log("please", stat);
-
-  const query = `UPDATE assignedtasks SET completeflag = ${stat} WHERE assignedtasks.tasksid = ${taskid}`;
-
-  client.query(query, (err, res) => {
-    if (err) {
-      console.log(stat);
-      console.log(taskid);
-      response.status(500).json({"message": err});
-    }
-    else { 
-      console.log("Attempting to update", res);
-      response.status(200).json({ data: {
-        'taskid': taskid,
-        'status': stat
-      }});
-    }
-    //console.log(res);
-  })
-
-
-});
-
-app.post('/updatetask', function (req, response) {
-  console.log("please give me output");
-  const { taskid, kid } = req.body;
-  console.log("Printing new user", kid);
-
-  
-  // console.log("please", stat);
-
-  const query = `UPDATE assignedtasks SET kirboid = ${kid} WHERE assignedtasks.tasksid = ${taskid}`;
-
-  client.query(query, (err, res) => {
-    if (err) {
-      console.log(taskid);
-      response.status(500).json({"message": err});
-    }
-    else { 
-      console.log("Attempting to update", res);
-      response.status(200).json({ data: {
-        'taskid': taskid,
-        'kirboid': kid
-      }});
-    }
-    //console.log(res);
-  })
-
-
-});
-
-
 
 app.get('/home/:user', function(req, response) {
   //console.log("project-page was called.");
@@ -241,12 +146,8 @@ app.get('/home/:user', function(req, response) {
       });
       Promise.all(promises)
         .then(data => { 
-          //console.log(data);
-          for (let i = 0; i < data.length; i++) {
-            projectIds.rows[i].projectname = data[i];
-          }
-          console.log("Before return", {data:projectIds.rows});
-          response.status(200).json({ data:projectIds.rows });
+          console.log(data);
+          response.status(200).json({ data });
         })
         .catch(issue => response.status(500).json({ message: issue }))
         //.finally(() => client.end());
@@ -254,42 +155,9 @@ app.get('/home/:user', function(req, response) {
   });
 });
 
-app.post('/addtask', function (req, response) {
-  // const {  }
+app.post('/project', function (req, res) {
 
-  const { title, projectname, projectid, description, duedate, user, kid } = req.body;
-  console.log(title);
-  console.log(projectname);
-  console.log(projectid);
-  console.log(description);
-  console.log(duedate);
-  console.log(user);
-  console.log(kid);
-
-  const tid = Math.floor(Math.random() * Math.floor(10000000));
-
-  const query = `INSERT INTO assignedtasks (tasksid, kirboid, projectid, taskname, completeflag, duedate, assignedflag) 
-                VALUES (${tid}, ${kid}, ${projectid}, '${title}', 0, '${duedate}', 1)`;
+  const query = `INSERT INTO assignedtasks () VALUES ()`
   
-  client.query(query, (err, res) => {
-    if (err) {
-      // console.log(stat);
-      response.status(500).json({"message": err});
-    }
-    else { 
-      // console.log(res);
-      response.status(200).json({ data: {
-        'title': title,
-        'taskid': tid,
-        'status': 0,
-        'description': description,
-        'project': projectname,
-        'projectid': projectid,
-        'duedate': duedate,
-        'user': user,
-        'kirboid': kid
-      }});
-    }
-  })
 });
 

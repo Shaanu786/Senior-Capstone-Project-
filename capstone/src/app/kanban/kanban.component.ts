@@ -15,15 +15,11 @@ import { Task } from '../tasks-service/task-service.service';
 })
 export class KanbanComponent implements OnInit {
     @Input() project: string;
-    todo
-    progress
-    done
-    projectid
-    // todo:Task[];
-    // progress:Task[];
-    // done:Task[];
-    // projectUrl:string;
-     members: any[];
+    todo:Task[];
+    progress:Task[];
+    done:Task[];
+    projectUrl:string;
+    members: any[];
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -64,32 +60,29 @@ export class KanbanComponent implements OnInit {
 
         //dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-        dialogConfig.data = {'projectid': this.projectid, 'members':this.members};
+        dialogConfig.data = {'project': this.project, 'members':this.members};
 
         this.dialog.open(AddTaskComponent, dialogConfig);
   }
   refreshLists()
   {
-      console.log(`refreshing tasks for project ${this.project}`);
-      this.todo = this.taskService.getTodoProject(this.project);
-      this.progress = this.taskService.getProgressProject(this.project);
-      this.done  = this.taskService.getFinishedProject(this.project);
+      console.log(`refreshing tasks for project ${this.projectUrl}`);
+      this.todo = this.taskService.getTodoProject(this.projectUrl);
+      this.progress = this.taskService.getProgressProject(this.projectUrl);
+      this.done  = this.taskService.getFinishedProject(this.projectUrl);
   }
 
   async ngOnInit() {
     await this.userService.fetchUsers();
     await this.taskService.fetchTasks();
+    console.log(this.taskService.appTasks);
     this.route.paramMap.subscribe(() =>
       {
-        this.projectid = this.taskService.getProjectId(this.project);
-        this.todo = this.taskService.getTodoProject(this.project);
-        this.progress = this.taskService.getProgressProject(this.project);
-        this.done  = this.taskService.getFinishedProject(this.project);
-        this.members = this.userService.getUsersProject(this.projectid);
+          this.todo = this.taskService.getTodoProject(this.project);
+          this.progress = this.taskService.getProgressProject(this.project);
+          this.done  = this.taskService.getFinishedProject(this.project);
+          this.members = this.userService.getUsersProject(this.project);
     })
-    // console.log("What is this going to be?", this.projectid);
-    // console.log("What is this going to be?", this.project);
-    // console.log("Looking for members to be populated", this.members);
   }
 }
  

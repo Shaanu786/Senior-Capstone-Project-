@@ -10,7 +10,6 @@ export class ProjectPageComponent implements OnInit {
 
   title;
   projects = []
-  projectids = []
   team_members = ["This","Is","Where","Team","Members", "Go"]
   constructor(private route: ActivatedRoute) { }
 
@@ -18,20 +17,12 @@ export class ProjectPageComponent implements OnInit {
       const user = JSON.parse(sessionStorage.getItem('user'));
         await fetch(`http://localhost:3001/home/${user.id}`)
         .then(res => res.json())
-        .then(({data}) => {
-          for (let i = 0; i < data.length; i++) {
-            this.projects.push(data[i].projectname);
-            this.projectids.push(data[i].projectid);
-          }
-        });
+        .then(({ data }) => this.projects = data);
         console.log("I am in the project page component", this.projects);
-        console.log("I am in the project page component", this.projectids);
       this.route.paramMap.subscribe(params =>
       {
-        console.log(params);
         this.title = params.get('id');
       });
-      console.log("I am here");
   }
 
 }

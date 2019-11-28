@@ -10,16 +10,12 @@ export class UsersService {
     }
     getUsersProject(project:string): any[]
     {
-        //console.log(`userservice: finding users for project: ${project}`);
-        console.log("in get user tasks")
+        console.log(`userservice: finding users for project: ${project}`);
         return users.filter(user => {
                 if ( user.projects.includes(project) ) { 
-                  console.log("Passed project", project);
                   console.log("GetUsersProjects", user.projects);
                   return true;
                 }
-                console.log("Passed project", project);
-                console.log("GetUsersProjects", user.projects);
                 return false;
           });
     }
